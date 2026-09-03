@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test D - Synthèse | Le Crystal</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #020202;
+            --purple: #b65ad9;
+            --purple-deep: #7a3099;
+            --gold: #e6ca62;
+            --white: #ffffff;
+            --muted: #d6ccd8;
+            --panel: #0d0a0f;
+            --line: rgba(230, 202, 98, 0.42);
+            --radius: 1.3rem;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            padding-bottom: 3.4rem;
+            color: var(--white);
+            background: var(--black);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; }
+
+        /* ---------- EN-TETE ---------- */
+        .topbar,
+        .site-nav,
+        .dock {
+            background: linear-gradient(90deg, var(--purple), #c06be1, var(--purple));
+            color: #09050b;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            min-height: 3rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .topbar b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        .hero {
+            display: grid;
+            place-items: center;
+            padding: clamp(1rem, 3.5vw, 2rem) 1.25rem;
+            background:
+                radial-gradient(circle at 50% 36%, rgba(182, 90, 217, 0.26), transparent 13rem),
+                linear-gradient(180deg, #000 0%, #050105 72%, #000 100%);
+        }
+
+        .hero__inner { width: min(100%, 44rem); text-align: center; }
+
+        .hero__logo {
+            width: min(100%, 37rem);
+            height: auto;
+            margin: 0 auto;
+            filter: drop-shadow(0 0 2rem rgba(182, 90, 217, 0.18));
+        }
+
+        .hero__tagline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(0.4rem, 2.5vw, 0.8rem);
+            margin: 0.25rem 0 0;
+            color: var(--muted);
+            font-weight: 700;
+            font-size: clamp(0.68rem, 3vw, 1rem);
+            white-space: nowrap;
+        }
+
+        .hero__tagline i { flex: 0 1 4rem; min-width: 1rem; height: 1px; background: var(--muted); }
+
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            min-height: 3rem;
+            overflow-x: auto;
+            padding: 0.75rem 1rem;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+
+        .site-nav::-webkit-scrollbar { display: none; }
+        .site-nav b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        /* ---------- HERO VIDEO (test A) ---------- */
+        .cine {
+            position: relative;
+            min-height: min(82vh, 44rem);
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .cine__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.12) saturate(1.1); }
+
+        .cine__veil {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 50% 40%, rgba(122, 48, 153, 0.26), transparent 62%),
+                linear-gradient(180deg, rgba(2, 2, 2, 0.55) 0%, rgba(2, 2, 2, 0.16) 38%, rgba(2, 2, 2, 0.62) 86%, #020202 100%);
+        }
+
+        .cine__content { position: relative; padding: 4rem 1.25rem; width: min(100%, 52rem); }
+
+        .cine__kicker {
+            margin: 0 0 0.75rem;
+            color: var(--gold);
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            text-shadow: 0 0.15rem 0.9rem rgba(0, 0, 0, 0.9);
+        }
+
+        .cine__title {
+            margin: 0;
+            font-size: clamp(2.6rem, 11vw, 6.5rem);
+            font-weight: 900;
+            line-height: 0.95;
+            text-shadow: 0 0 3rem rgba(182, 90, 217, 0.55), 0 0.25rem 1.5rem rgba(0, 0, 0, 0.85);
+        }
+
+        .cine__sub { margin: 1rem auto 2rem; max-width: 34rem; color: var(--muted); font-size: clamp(0.95rem, 3vw, 1.15rem); text-shadow: 0 0.15rem 1rem rgba(0, 0, 0, 0.9); }
+
+        .scroll-hint {
+            position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%);
+            color: var(--muted); font-size: 1.5rem; animation: bob 1.8s ease-in-out infinite;
+        }
+
+        @keyframes bob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 0.5rem); } }
+
+        /* ---------- BANDEAU DEFILANT (test A) ---------- */
+        .marquee {
+            overflow: hidden;
+            background: linear-gradient(90deg, var(--purple-deep), var(--purple), var(--purple-deep));
+            color: #0b040e;
+            padding: 0.6rem 0;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 0.8rem;
+        }
+
+        .marquee__track { display: flex; width: max-content; animation: slide 7s linear infinite; }
+        .marquee__track span { padding: 0 1.4rem; white-space: nowrap; }
+        @keyframes slide { to { transform: translateX(-50%); } }
+
+        /* ---------- COMMUN ---------- */
+        .section { padding: 4rem 0; }
+        .wrap { width: min(100%, 72rem); margin: 0 auto; padding: 0 1.25rem; }
+
+        .eyebrow {
+            margin: 0 0 0.4rem;
+            color: var(--gold);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        h2 { margin: 0 0 1.6rem; font-size: clamp(1.7rem, 5.5vw, 2.7rem); font-weight: 900; line-height: 1.05; }
+        .lead { color: var(--muted); }
+
+        .reveal { opacity: 0; transform: translateY(1.8rem); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.is-in { opacity: 1; transform: none; }
+
+        .cta-row { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.6rem; }
+
+        .button {
+            display: inline-flex; justify-content: center; align-items: center;
+            min-height: 3.1rem; padding: 0.85rem 1.7rem;
+            border: 1px solid var(--gold); border-radius: 999px;
+            font-weight: 800; font-size: 0.83rem; text-transform: uppercase; letter-spacing: 0.09em;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .button--primary { background: var(--gold); color: #100914; }
+        .button--ghost { color: var(--gold); background: rgba(0, 0, 0, 0.4); }
+        .button:hover { transform: translateY(-3px); box-shadow: 0 0.8rem 2rem rgba(230, 202, 98, 0.25); }
+
+        /* ---------- CE SOIR AU CRYSTAL (test A) ---------- */
+        .tiles { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+
+        .tile {
+            position: relative; min-height: 17rem; border-radius: var(--radius); overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: flex-end;
+        }
+
+        .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .tile:hover img { transform: scale(1.08); }
+
+        .tile__body { position: relative; width: 100%; padding: 1.2rem; background: linear-gradient(180deg, transparent, rgba(2, 2, 2, 0.9) 60%); }
+        .tile h3 { margin: 0 0 0.3rem; font-size: 1.05rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; }
+        .tile p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+        .tile::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 0 rgba(182, 90, 217, 0); transition: box-shadow 0.35s ease; }
+        .tile:hover::after { box-shadow: inset 0 0 0 2px rgba(182, 90, 217, 0.75); }
+
+        .tile__tag {
+            position: absolute; top: 1rem; left: 1rem; z-index: 2;
+            padding: 0.3rem 0.8rem; border-radius: 999px;
+            background: var(--gold); color: #100914;
+            font-size: 0.62rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+        }
+
+        .tile__time { display: block; margin-bottom: 0.35rem; color: var(--white); font-size: 0.95rem; font-weight: 800; }
+
+        /* ---------- TARIFS ---------- */
+        .prices { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+
+        .price {
+            position: relative;
+            padding: 1.6rem 1.4rem;
+            border-radius: var(--radius);
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .price:hover { transform: translateY(-4px); border-color: rgba(230, 202, 98, 0.5); }
+        .price h3 { margin: 0 0 0.6rem; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); }
+        .price strong { display: block; font-size: clamp(1.9rem, 6vw, 2.6rem); font-weight: 900; line-height: 1; color: var(--gold); }
+        .price p { margin: 0.6rem 0 0; color: var(--muted); font-size: 0.9rem; }
+
+        .price--highlight {
+            border-color: var(--gold);
+            background: linear-gradient(160deg, rgba(230, 202, 98, 0.14), rgba(122, 48, 153, 0.2));
+            box-shadow: 0 0 2.5rem rgba(230, 202, 98, 0.16);
+        }
+
+        /* ---------- RESERVATION ---------- */
+        .booking {
+            display: grid;
+            gap: 1.4rem;
+            align-items: center;
+            padding: 1.8rem 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(160deg, rgba(122, 48, 153, 0.32), var(--panel));
+        }
+
+        .booking p { margin: 0 0 0.6rem; color: var(--muted); }
+        .booking strong { color: var(--white); }
+
+        .limited {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.35rem 0.9rem; border-radius: 999px;
+            border: 1px solid #ff4d5e; color: #ff4d5e;
+            font-size: 0.66rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+        }
+
+        .limited::before { content: ""; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: #ff4d5e; box-shadow: 0 0 0.6rem #ff4d5e; }
+
+        .button--wa { background: #25d366; border-color: #25d366; color: #06280f; }
+
+        /* ---------- REGLES ---------- */
+        .rules { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+
+        .rules__list { margin: 0; padding: 0; list-style: none; }
+
+        .rules__list li {
+            position: relative;
+            padding: 0.6rem 0 0.6rem 1.6rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .rules__list li:last-child { border-bottom: 0; }
+        .rules__list li::before { content: "◆"; position: absolute; left: 0; top: 0.6rem; color: var(--purple); font-size: 0.7rem; }
+        .rules__list strong { color: var(--white); }
+
+        .spirit {
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--line);
+            background: linear-gradient(160deg, rgba(122, 48, 153, 0.22), var(--panel));
+        }
+
+        .spirit p { margin: 0 0 0.8rem; color: var(--gold); font-size: clamp(1rem, 3vw, 1.2rem); font-weight: 700; line-height: 1.45; }
+        .spirit a { color: var(--muted); font-size: 0.82rem; text-decoration: underline; text-underline-offset: 0.25rem; }
+
+        /* ---------- HORAIRES + LIVE (test B) ---------- */
+        .duo { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+
+        .card {
+            position: relative; border-radius: var(--radius); overflow: hidden;
+            background: var(--panel); border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            min-height: 15rem;
+        }
+
+        .card:hover { transform: translateY(-4px); border-color: rgba(230, 202, 98, 0.5); }
+        .card__body { position: relative; padding: 1.5rem; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+
+        .card--hours { background: linear-gradient(160deg, rgba(122, 48, 153, 0.35), var(--panel)); }
+        .hours-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.12); font-size: 0.92rem; }
+        .hours-row:last-child { border-bottom: 0; }
+        .hours-row strong { text-align: right; }
+        .hours-row--open strong { color: var(--gold); }
+
+        .card--live video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .card--live .card__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2, 2, 2, 0.2), rgba(2, 2, 2, 0.88)); }
+        .card--live .card__body { justify-content: flex-end; }
+        .card--live h3 { margin: 0 0 0.25rem; font-size: 1.3rem; font-weight: 900; }
+        .card--live p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+        .badge {
+            position: absolute; top: 1rem; left: 1rem; z-index: 2;
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            padding: 0.3rem 0.8rem; border-radius: 999px;
+            background: rgba(2, 2, 2, 0.65); border: 1px solid var(--gold);
+            color: var(--gold); font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+        }
+
+        .badge::before { content: ""; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: #ff4d5e; box-shadow: 0 0 0.6rem #ff4d5e; }
+
+        /* ---------- NOS DERNIERES SOIREES (test B) ---------- */
+        .rail { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .rail::-webkit-scrollbar { display: none; }
+
+        .rail__item {
+            position: relative; flex: 0 0 auto; width: min(70vw, 18rem); aspect-ratio: 3 / 4;
+            border-radius: var(--radius); overflow: hidden; scroll-snap-align: start;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .rail__item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .rail__item:hover img { transform: scale(1.06); }
+        .rail__label { position: absolute; inset: auto 0 0 0; padding: 1rem; background: linear-gradient(180deg, transparent, rgba(2, 2, 2, 0.92)); }
+        .rail__label span { display: block; color: var(--gold); font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; }
+        .rail__label strong { font-size: 1.05rem; font-weight: 900; }
+
+        .head-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+        .head-row h2 { margin-bottom: 0.8rem; }
+        .hint { color: var(--muted); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; }
+
+        /* ---------- GALERIE MOSAIQUE (test C) ---------- */
+        .mosaic { display: grid; gap: 0.7rem; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 9rem; }
+        .mosaic img { width: 100%; height: 100%; object-fit: cover; border-radius: 0.9rem; filter: saturate(0.85); transition: transform 0.5s ease, filter 0.5s ease; }
+        .mosaic img:hover { transform: scale(1.03); filter: saturate(1.2); }
+        .mosaic .big { grid-column: span 2; grid-row: span 2; }
+        .mosaic .tall { grid-row: span 2; }
+        .mosaic .wide { grid-column: span 2; }
+
+        /* ---------- PANNEAUX IMMERSIFS (test C) ---------- */
+        .panel { position: relative; min-height: min(80vh, 42rem); display: grid; align-items: center; overflow: hidden; }
+        .panel__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .panel__veil { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(2, 2, 2, 0.94) 0%, rgba(2, 2, 2, 0.7) 45%, rgba(2, 2, 2, 0.35) 100%); }
+        .panel__inner { position: relative; width: min(100%, 72rem); margin: 0 auto; padding: 4rem 1.25rem; }
+        .narrow { max-width: 34rem; }
+
+        .map-frame { margin-top: 1.4rem; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16 / 9; }
+        .map-frame iframe { width: 100%; height: 100%; border: 0; filter: invert(0.9) hue-rotate(180deg) saturate(0.7); }
+        address { font-style: normal; color: var(--muted); }
+
+        /* ---------- FOOTER ---------- */
+        .footer { padding: 1.1rem 1.25rem; background: #f4f4f4; color: #9d9aa2; }
+
+        .footer__menu {
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+            gap: 0.45rem 0.85rem; max-width: 72rem; margin: 0 auto; text-align: center;
+            font-size: 0.95rem; font-weight: 400;
+        }
+
+        .footer__menu a { color: #8f8b94; }
+        .footer__menu a:hover { color: var(--purple-deep); }
+        .footer__separator { color: #beb9c2; }
+
+        .dock {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 30;
+            display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+            min-height: 3rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .dock b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        @media (min-width: 48rem) {
+            .duo { grid-template-columns: 1.15fr 1fr; }
+            .booking { grid-template-columns: 1.4fr 1fr; }
+            .rules { grid-template-columns: 1.3fr 1fr; }
+            .dock { display: none; }
+            body { padding-bottom: 0; }
+        }
+
+        @media (max-width: 40rem) {
+            .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 7rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .reveal { opacity: 1; transform: none; }
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar" aria-label="Réseaux sociaux">
+        <a href="https://www.facebook.com/profile.php?id=61567891615750">Facebook</a>
+        <b aria-hidden="true">◆</b>
+        <a href="https://www.instagram.com/lecrystal_club/">Instagram</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero__inner">
+            <img class="hero__logo" src="assets/img/logo-crystal-full.png" alt="Logo Le Crystal">
+            <p class="hero__tagline"><i></i>Un nouveau club privé sur Meaux<i></i></p>
+        </div>
+    </section>
+
+    <nav class="site-nav" aria-label="Navigation principale">
+        <a href="#privatisation">Privatisation</a>
+        <b aria-hidden="true">◆</b>
+        <a href="#horaires">Horaires</a>
+        <b aria-hidden="true">◆</b>
+        <a href="#contact">Réservation</a>
+    </nav>
+
+    <main>
+        <!-- HERO VIDEO -->
+        <section class="cine" aria-label="Présentation">
+            <video class="cine__video" autoplay muted loop playsinline preload="metadata" poster="assets/img/DSCF7326.png">
+                <source src="assets/video/Video1.mp4" type="video/mp4">
+            </video>
+            <div class="cine__veil" aria-hidden="true"></div>
+            <div class="cine__content">
+                <p class="cine__kicker">Club privé · Meaux</p>
+                <h1 class="cine__title">LE CRYSTAL</h1>
+                <p class="cine__sub">Un lieu agrandi, repensé, plus chaleureux. Deux espaces, deux univers musicaux, les vendredis et samedis.</p>
+                <div class="cta-row" style="justify-content:center">
+                    <a class="button button--primary" href="#contact">Réserver</a>
+                    <a class="button button--ghost" href="#privatisation">Privatiser le lieu</a>
+                </div>
+            </div>
+            <span class="scroll-hint" aria-hidden="true">⌄</span>
+        </section>
+
+        <!-- BANDEAU DEFILANT -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee__track">
+                <span>◆ Nouveau club</span><span>◆ Nouveau son</span><span>◆ Nouveau thème</span><span>◆ 2 espaces · 2 univers</span>
+                <span>◆ Nouveau club</span><span>◆ Nouveau son</span><span>◆ Nouveau thème</span><span>◆ 2 espaces · 2 univers</span>
+            </div>
+        </div>
+
+        <!-- 2 ESPACES 2 UNIVERS -->
+        <section class="section" id="musique">
+            <div class="wrap reveal">
+                <p class="eyebrow">La musique</p>
+                <h2>2 espaces, 2 univers</h2>
+                <div class="tiles">
+                    <article class="tile">
+                        <img src="assets/img/Im2.jpg" alt="Espace intérieur du Crystal" loading="lazy">
+                        <div class="tile__body">
+                            <h3>Intérieur</h3>
+                            <span class="tile__time">23h30 → 04h00</span>
+                            <p>Open format.</p>
+                        </div>
+                    </article>
+                    <article class="tile">
+                        <img src="assets/img/Im5.jpg" alt="Espace extérieur du Crystal" loading="lazy">
+                        <div class="tile__body">
+                            <h3>Extérieur</h3>
+                            <span class="tile__time">23h45 → 03h00</span>
+                            <p>House.</p>
+                        </div>
+                    </article>
+                    <article class="tile">
+                        <span class="tile__tag">Nouveauté</span>
+                        <img src="assets/img/Im8.jpg" alt="Système son du Crystal" loading="lazy">
+                        <div class="tile__body">
+                            <h3>Le son</h3>
+                            <span class="tile__time">Unique en Île-de-France</span>
+                            <p>Nouveau club, nouveau thème, nouvelles surprises.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- TARIFS -->
+        <section class="section" id="tarifs">
+            <div class="wrap reveal">
+                <p class="eyebrow">Sur place</p>
+                <h2>Tarifs</h2>
+                <div class="prices">
+                    <article class="price">
+                        <h3>Entrée</h3>
+                        <strong>20 €</strong>
+                        <p>Une consommation incluse.</p>
+                    </article>
+                    <article class="price price--highlight">
+                        <h3>Pour les femmes</h3>
+                        <strong>Gratuit</strong>
+                        <p>Entre 23h30 et 00h00. Une consommation incluse.</p>
+                    </article>
+                    <article class="price">
+                        <h3>Vestiaire</h3>
+                        <strong>2 €</strong>
+                        <p>Toute récupération pendant la soirée est facturée 2 €. La récupération définitive au moment du départ reste gratuite.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESERVATION -->
+        <section class="section" id="contact">
+            <div class="wrap reveal">
+                <p class="eyebrow">Votre table</p>
+                <h2>Réservation</h2>
+                <div class="booking">
+                    <div>
+                        <p>Vous souhaitez une table pendant la soirée ? Les réservations se font <strong>exclusivement sur WhatsApp</strong>.</p>
+                        <span class="limited">Places limitées</span>
+                    </div>
+                    <div class="cta-row" style="margin-top:0">
+                        <a class="button button--wa" href="https://wa.me/33670446998?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20table%20au%20Crystal" target="_blank" rel="noopener">Réserver sur WhatsApp</a>
+                        <a class="button button--ghost" href="tel:+33670446998">06.70.44.69.98</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HORAIRES + EN LIVE -->
+        <section class="section" id="horaires">
+            <div class="wrap reveal">
+                <p class="eyebrow">Infos pratiques</p>
+                <h2>Horaires</h2>
+                <div class="duo">
+                    <article class="card card--hours">
+                        <div class="card__body">
+                            <div class="hours-row"><span>Lundi → Jeudi</span><strong>Fermé</strong></div>
+                            <div class="hours-row hours-row--open"><span>Vendredi<br>Intérieur · Extérieur</span><strong>23h30 → 04h00<br>23h45 → 03h00</strong></div>
+                            <div class="hours-row hours-row--open"><span>Samedi<br>Intérieur · Extérieur</span><strong>23h30 → 04h00<br>23h45 → 03h00</strong></div>
+                            <div class="hours-row"><span>Dimanche</span><strong>Fermé</strong></div>
+                        </div>
+                    </article>
+
+                    <a class="card card--live" href="https://www.instagram.com/lecrystal_club/" target="_blank" rel="noopener">
+                        <video autoplay muted loop playsinline preload="metadata" poster="assets/img/DSCF7148.png">
+                            <source src="assets/video/Videonewyear2025.mp4" type="video/mp4">
+                        </video>
+                        <span class="badge">En live</span>
+                        <div class="card__veil" aria-hidden="true"></div>
+                        <div class="card__body">
+                            <h3>@lecrystal_club</h3>
+                            <p>Suivez les prochaines soirées sur Instagram</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOS DERNIERES SOIREES -->
+        <section class="section">
+            <div class="wrap reveal">
+                <div class="head-row">
+                    <div>
+                        <p class="eyebrow">Rétrospective</p>
+                        <h2>Nos dernières soirées</h2>
+                    </div>
+                    <span class="hint">Faites glisser →</span>
+                </div>
+                <div class="rail">
+                    <article class="rail__item">
+                        <img src="assets/img/Im2.jpg" alt="Soirée du 25 juillet 2025" loading="lazy">
+                        <div class="rail__label"><span>25.07.2025</span><strong>Summer Night</strong></div>
+                    </article>
+                    <article class="rail__item">
+                        <img src="assets/img/Im5.jpg" alt="Soirée du 21 juin 2025" loading="lazy">
+                        <div class="rail__label"><span>21.06.2025</span><strong>Fête de la musique</strong></div>
+                    </article>
+                    <article class="rail__item">
+                        <img src="assets/img/Im8.jpg" alt="Soirée du 28 mai 2025" loading="lazy">
+                        <div class="rail__label"><span>28.05.2025</span><strong>Crystal Sessions</strong></div>
+                    </article>
+                    <article class="rail__item">
+                        <img src="assets/img/Crystal-3.jpg" alt="Soirée du 8 mars 2025" loading="lazy">
+                        <div class="rail__label"><span>08.03.2025</span><strong>Ladies Night</strong></div>
+                    </article>
+                    <article class="rail__item">
+                        <img src="assets/img/Crystal-7.jpg" alt="Soirée du 18 janvier 2025" loading="lazy">
+                        <div class="rail__label"><span>18.01.2025</span><strong>New Year Party</strong></div>
+                    </article>
+                    <article class="rail__item">
+                        <img src="assets/img/Im10.jpg" alt="Soirée du 13 décembre 2024" loading="lazy">
+                        <div class="rail__label"><span>13.12.2024</span><strong>Christmas Club</strong></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- AVANT DE NOUS REJOINDRE -->
+        <section class="section" id="regles">
+            <div class="wrap reveal">
+                <p class="eyebrow">Avant de nous rejoindre</p>
+                <h2>L'esprit du Crystal</h2>
+                <div class="rules">
+                    <ul class="rules__list">
+                        <li>L'accès reste soumis aux <strong>règles de l'établissement</strong> et à sa capacité d'accueil.</li>
+                        <li>La direction se réserve le <strong>droit d'admission</strong>, conformément à la réglementation en vigueur.</li>
+                        <li><strong>Tenue correcte exigée.</strong></li>
+                        <li>Tout comportement déplacé, état d'ivresse ou usage de drogue entraînera un <strong>refus d'accès ou une exclusion</strong> de l'établissement.</li>
+                    </ul>
+                    <div class="spirit">
+                        <p>Le Crystal est un lieu de fête, de musique et de partage. On compte sur chacun pour préserver cette ambiance.</p>
+                        <a href="reglement-interieur.html">Lire le règlement intérieur</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRIVATISEZ LE CRYSTAL -->
+        <section class="panel" id="privatisation">
+            <img class="panel__bg" src="assets/img/DSCF7253.png" alt="" loading="lazy">
+            <div class="panel__veil" aria-hidden="true"></div>
+            <div class="panel__inner">
+                <div class="narrow reveal">
+                    <p class="eyebrow">Événements</p>
+                    <h2>Privatisez le Crystal</h2>
+                    <p class="lead">Anniversaire, soirée d'entreprise, afterwork ou événement privé : nous mettons notre cadre intimiste à votre disposition pour créer une soirée à votre image.</p>
+                    <div class="cta-row">
+                        <a class="button button--primary" href="mailto:contact@lecrystalbar.com">Demander un devis</a>
+                        <a class="button button--ghost" href="tel:+33670446998">Nous appeler</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VENIR AU CRYSTAL -->
+        <section class="section" id="acces">
+            <div class="wrap reveal">
+                <p class="eyebrow">Venir au Crystal</p>
+                <h2>Plan d'accès</h2>
+                <address>Le Crystal<br>2 rue de la Briqueterie, 77470 Poincy</address>
+                <div class="map-frame">
+                    <iframe title="Plan d'accès Le Crystal" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=2%20rue%20de%20la%20Briqueterie%2077470%20Poincy&output=embed"></iframe>
+                </div>
+                <div class="cta-row">
+                    <a class="button button--wa" href="https://wa.me/33670446998?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20table%20au%20Crystal" target="_blank" rel="noopener">Réserver sur WhatsApp</a>
+                    <a class="button button--ghost" href="mailto:contact@lecrystalbar.com">contact@lecrystalbar.com</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <nav class="footer__menu" aria-label="Liens légaux">
+            <span>L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</span>
+            <span class="footer__separator" aria-hidden="true">|</span>
+            <a href="politique-confidentialite.html">Politique de Confidentialité</a>
+            <a href="mentions-legales.html">Mentions Légales</a>
+            <a href="reglement-interieur.html">Règlement Intérieur</a>
+        </nav>
+    </footer>
+
+    <nav class="dock" aria-label="Actions rapides">
+        <a href="https://wa.me/33670446998?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20table%20au%20Crystal" target="_blank" rel="noopener">WhatsApp</a>
+        <b aria-hidden="true">◆</b>
+        <a href="https://www.google.com/maps?q=2+rue+de+la+Briqueterie+77470+Poincy" target="_blank" rel="noopener">Itinéraire</a>
+        <b aria-hidden="true">◆</b>
+        <a href="https://www.instagram.com/lecrystal_club/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+
+    <script>
+        (function () {
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) { return; }
+                    entry.target.classList.add('is-in');
+                    observer.unobserve(entry.target);
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
+        })();
+    </script>
+</body>
+</html>
