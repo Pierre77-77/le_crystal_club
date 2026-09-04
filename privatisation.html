@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Privatisation | Le Crystal</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #020202;
+            --purple: #b65ad9;
+            --purple-deep: #7a3099;
+            --gold: #e6ca62;
+            --white: #ffffff;
+            --muted: #d6ccd8;
+            --panel: #0d0a0f;
+            --line: rgba(230, 202, 98, 0.42);
+            --radius: 1.3rem;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            padding-bottom: 3.4rem;
+            color: var(--white);
+            background: var(--black);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; }
+
+        .topbar, .site-nav, .dock {
+            background: linear-gradient(90deg, var(--purple), #c06be1, var(--purple));
+            color: #09050b;
+        }
+
+        .topbar {
+            display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+            min-height: 3rem; padding: 0.75rem 1rem;
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+        }
+
+        .topbar b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        .page-hero {
+            padding: 2rem 1.25rem;
+            background: radial-gradient(circle at 50% 36%, rgba(182, 90, 217, 0.22), transparent 10rem), #000;
+            text-align: center;
+        }
+
+        .page-hero__brand { display: inline-flex; width: min(60vw, 15rem); }
+        .page-hero__brand img { display: block; width: 100%; height: auto; }
+
+        .site-nav {
+            position: sticky; top: 0; z-index: 20;
+            display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+            min-height: 3rem; overflow-x: auto; padding: 0.75rem 1rem;
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+            white-space: nowrap; scrollbar-width: none;
+        }
+
+        .site-nav::-webkit-scrollbar { display: none; }
+        .site-nav b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        .section { padding: 4rem 0; }
+        .wrap { width: min(100%, 72rem); margin: 0 auto; padding: 0 1.25rem; }
+        .section--alt { background: var(--panel); }
+
+        .eyebrow { margin: 0; color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; }
+        h1, h2 { margin: 0 0 1.6rem; font-size: clamp(1.7rem, 5.5vw, 2.7rem); font-weight: 900; line-height: 1.05; }
+        h3 { margin: 0 0 1rem; font-size: clamp(1.2rem, 4vw, 1.6rem); font-weight: 900; }
+        .lead { color: var(--muted); max-width: 42rem; }
+
+        .cta-row { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.6rem; }
+        .button {
+            display: inline-flex; justify-content: center; align-items: center;
+            min-height: 3.1rem; padding: 0.85rem 1.7rem;
+            border: 1px solid var(--gold); border-radius: 999px;
+            font-weight: 800; font-size: 0.83rem; text-transform: uppercase; letter-spacing: 0.09em;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .button--primary { background: var(--gold); color: #100914; }
+        .button--ghost { color: var(--gold); background: rgba(0, 0, 0, 0.4); }
+        .button:hover { transform: translateY(-3px); box-shadow: 0 0.8rem 2rem rgba(230, 202, 98, 0.25); }
+
+        /* ---------- INTRO SPLIT ---------- */
+        .split { display: grid; gap: 1.6rem; grid-template-columns: 1fr; align-items: center; }
+        .split img { width: 100%; border-radius: var(--radius); border: 1px solid var(--purple); }
+        .split .gallery-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+
+        .occasions { margin: 1.4rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.6rem; }
+        .occasions li {
+            position: relative; padding-left: 1.6rem; color: var(--muted); font-size: 0.95rem;
+        }
+        .occasions li::before { content: "◆"; position: absolute; left: 0; top: 0.1rem; color: var(--gold); font-size: 0.7rem; }
+
+        /* ---------- SERVICES ---------- */
+        .services { display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin-top: 1.4rem; }
+        .service {
+            padding: 1.1rem 1.2rem; border-radius: 1rem;
+            background: var(--black); border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.9rem; color: var(--muted);
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+        .section--alt .service { background: var(--panel); }
+        .service:hover { transform: translateY(-3px); border-color: rgba(230, 202, 98, 0.5); }
+        .service strong { display: block; color: var(--white); margin-bottom: 0.2rem; }
+
+        .closing {
+            margin-top: 2.5rem; padding: 1.6rem; border-radius: var(--radius);
+            border: 1px solid var(--line);
+            background: linear-gradient(160deg, rgba(122, 48, 153, 0.22), var(--panel));
+            text-align: center;
+        }
+        .closing p { margin: 0 0 1rem; color: var(--gold); font-size: clamp(1rem, 3vw, 1.25rem); font-weight: 700; }
+
+        .back-link { display: inline-block; margin-top: 2rem; color: var(--muted); font-size: 0.82rem; text-decoration: underline; text-underline-offset: 0.25rem; }
+
+        .footer { padding: 1.1rem 1.25rem; background: #f4f4f4; color: #9d9aa2; }
+        .footer__menu {
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+            gap: 0.45rem 0.85rem; max-width: 72rem; margin: 0 auto; text-align: center;
+            font-size: 0.95rem; font-weight: 400;
+        }
+        .footer__menu a { color: #8f8b94; }
+        .footer__menu a:hover { color: var(--purple-deep); }
+        .footer__separator { color: #beb9c2; }
+
+        .dock {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 30;
+            display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+            min-height: 3rem; padding: 0.75rem 1rem;
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+        }
+        .dock b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        @media (min-width: 48rem) {
+            .split { grid-template-columns: 1fr 1fr; }
+            .dock { display: none; }
+            body { padding-bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar" aria-label="Réseaux sociaux">
+        <a href="https://www.facebook.com/profile.php?id=61567891615750">Facebook</a>
+        <b aria-hidden="true">◆</b>
+        <a href="https://www.instagram.com/lecrystal_club/">Instagram</a>
+    </header>
+
+    <section class="page-hero">
+        <a class="page-hero__brand" href="test-e.html" aria-label="Retour à l'accueil">
+            <img src="assets/img/logo-crystal-full.png" alt="Logo Le Crystal">
+        </a>
+    </section>
+
+    <nav class="site-nav" aria-label="Navigation principale">
+        <a href="test-e.html">Accueil</a>
+        <b aria-hidden="true">◆</b>
+        <a href="test-e.html#horaires">Horaires</a>
+        <b aria-hidden="true">◆</b>
+        <a href="tarifs-reservation.html">Réservations</a>
+    </nav>
+
+    <main>
+        <section class="section">
+            <div class="wrap">
+                <p class="eyebrow">Événements</p>
+                <h1>Privatisation</h1>
+                <p class="lead">Pour vos évènements, profitez d'un lieu d'exception.</p>
+                <div class="split" style="margin-top:2rem">
+                    <div class="gallery-two">
+                        <img src="assets/img/Crystal-8.jpg" alt="Le Crystal privatisé" loading="lazy">
+                        <img src="assets/img/Crystal-9.jpg" alt="Ambiance du Crystal privatisé" loading="lazy">
+                    </div>
+                    <div>
+                        <h3>Pour toutes vos occasions</h3>
+                        <ul class="occasions">
+                            <li>Une soirée entre amis</li>
+                            <li>Un enterrement de vie de célibataire</li>
+                            <li>Une fête d'anniversaire</li>
+                            <li>Un évènement d'entreprise</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--alt">
+            <div class="wrap">
+                <p class="eyebrow">Sur mesure</p>
+                <h2>Nous vous proposons de privatiser le Crystal</h2>
+                <p class="lead">Un conseiller dédié vous accompagnera tout au long de votre évènement. Votre privatisation pourra s'accompagner de :</p>
+                <div class="services">
+                    <div class="service"><strong>Soirée dansante</strong>Ambiance et musique toute la soirée.</div>
+                    <div class="service"><strong>Présence d'un DJ</strong>Une programmation pensée pour votre événement.</div>
+                    <div class="service"><strong>Open bar</strong>Formules boissons adaptées à votre budget.</div>
+                    <div class="service"><strong>Restauration sur mesure</strong>Buffet ou plateaux selon vos envies.</div>
+                    <div class="service"><strong>Karaoké</strong>Animation conviviale pour tous les invités.</div>
+                    <div class="service"><strong>Magicien / Close-up</strong>Un spectacle de proximité surprenant.</div>
+                    <div class="service"><strong>Soirée casino</strong>Tables de jeux pour une ambiance festive.</div>
+                    <div class="service"><strong>Team building atelier cocktail</strong>Un moment convivial entre collègues.</div>
+                    <div class="service"><strong>Photographe</strong>Un souvenir photo de votre soirée.</div>
+                    <div class="service"><strong>Accessoires festifs</strong>Lunettes lumineuses, bracelets fluorescents.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap">
+                <div class="closing">
+                    <p>Faites-nous part de vos envies… on s'occupe de tout !</p>
+                    <div class="cta-row" style="justify-content:center">
+                        <a class="button button--primary" href="mailto:contact@lecrystalbar.com">Demander un devis</a>
+                        <a class="button button--ghost" href="tel:+33670446998">Nous appeler</a>
+                    </div>
+                </div>
+                <a class="back-link" href="test-e.html">← Retour à l'accueil</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <nav class="footer__menu" aria-label="Liens légaux">
+            <span>L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</span>
+            <span class="footer__separator" aria-hidden="true">|</span>
+            <a href="politique-confidentialite.html">Politique de Confidentialité</a>
+            <a href="mentions-legales.html">Mentions Légales</a>
+            <a href="reglement-interieur.html">Règlement Intérieur</a>
+        </nav>
+    </footer>
+
+    <nav class="dock" aria-label="Actions rapides">
+        <a href="tarifs-reservation.html">Tarif</a>
+        <b aria-hidden="true">◆</b>
+        <a href="plan-acces.html">Itinéraire</a>
+        <b aria-hidden="true">◆</b>
+        <a href="privatisation.html" aria-current="page">Privatisation</a>
+    </nav>
+</body>
+</html>

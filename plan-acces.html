@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Plan d'accès | Le Crystal</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #020202;
+            --purple: #b65ad9;
+            --purple-deep: #7a3099;
+            --gold: #e6ca62;
+            --white: #ffffff;
+            --muted: #d6ccd8;
+            --panel: #0d0a0f;
+            --line: rgba(230, 202, 98, 0.42);
+            --radius: 1.3rem;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            padding-bottom: 3.4rem;
+            color: var(--white);
+            background: var(--black);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; }
+
+        .topbar, .site-nav, .dock {
+            background: linear-gradient(90deg, var(--purple), #c06be1, var(--purple));
+            color: #09050b;
+        }
+
+        .topbar {
+            display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+            min-height: 3rem; padding: 0.75rem 1rem;
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+        }
+
+        .topbar b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        .page-hero {
+            padding: 2rem 1.25rem;
+            background: radial-gradient(circle at 50% 36%, rgba(182, 90, 217, 0.22), transparent 10rem), #000;
+            text-align: center;
+        }
+
+        .page-hero__brand { display: inline-flex; width: min(60vw, 15rem); }
+        .page-hero__brand img { display: block; width: 100%; height: auto; }
+
+        .site-nav {
+            position: sticky; top: 0; z-index: 20;
+            display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+            min-height: 3rem; overflow-x: auto; padding: 0.75rem 1rem;
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+            white-space: nowrap; scrollbar-width: none;
+        }
+
+        .site-nav::-webkit-scrollbar { display: none; }
+        .site-nav b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        .section { padding: 4rem 0; }
+        .wrap { width: min(100%, 72rem); margin: 0 auto; padding: 0 1.25rem; }
+
+        .eyebrow { margin: 0; color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; }
+        h1 { margin: 0 0 1rem; font-size: clamp(1.7rem, 5.5vw, 2.7rem); font-weight: 900; line-height: 1.05; }
+        address { font-style: normal; color: var(--muted); margin: 0 0 1.6rem; }
+
+        .map-frame { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16 / 10; }
+        .map-frame iframe { width: 100%; height: 100%; border: 0; filter: invert(0.9) hue-rotate(180deg) saturate(0.7); }
+
+        .cta-row { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.6rem; }
+        .button {
+            display: inline-flex; justify-content: center; align-items: center;
+            min-height: 3.1rem; padding: 0.85rem 1.7rem;
+            border: 1px solid var(--gold); border-radius: 999px;
+            font-weight: 800; font-size: 0.83rem; text-transform: uppercase; letter-spacing: 0.09em;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .button--primary { background: var(--gold); color: #100914; }
+        .button--ghost { color: var(--gold); background: rgba(0, 0, 0, 0.4); }
+        .button:hover { transform: translateY(-3px); box-shadow: 0 0.8rem 2rem rgba(230, 202, 98, 0.25); }
+
+        .back-link { display: inline-block; margin-top: 2rem; color: var(--muted); font-size: 0.82rem; text-decoration: underline; text-underline-offset: 0.25rem; }
+
+        .footer { padding: 1.1rem 1.25rem; background: #f4f4f4; color: #9d9aa2; }
+        .footer__menu {
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+            gap: 0.45rem 0.85rem; max-width: 72rem; margin: 0 auto; text-align: center;
+            font-size: 0.95rem; font-weight: 400;
+        }
+        .footer__menu a { color: #8f8b94; }
+        .footer__menu a:hover { color: var(--purple-deep); }
+        .footer__separator { color: #beb9c2; }
+
+        .dock {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 30;
+            display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+            min-height: 3rem; padding: 0.75rem 1rem;
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+        }
+        .dock b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        @media (min-width: 48rem) {
+            .map-frame { aspect-ratio: 16 / 9; }
+            .dock { display: none; }
+            body { padding-bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar" aria-label="Réseaux sociaux">
+        <a href="https://www.facebook.com/profile.php?id=61567891615750">Facebook</a>
+        <b aria-hidden="true">◆</b>
+        <a href="https://www.instagram.com/lecrystal_club/">Instagram</a>
+    </header>
+
+    <section class="page-hero">
+        <a class="page-hero__brand" href="test-e.html" aria-label="Retour à l'accueil">
+            <img src="assets/img/logo-crystal-full.png" alt="Logo Le Crystal">
+        </a>
+    </section>
+
+    <nav class="site-nav" aria-label="Navigation principale">
+        <a href="test-e.html">Accueil</a>
+        <b aria-hidden="true">◆</b>
+        <a href="test-e.html#horaires">Horaires</a>
+        <b aria-hidden="true">◆</b>
+        <a href="tarifs-reservation.html">Réservations</a>
+    </nav>
+
+    <main>
+        <section class="section">
+            <div class="wrap">
+                <p class="eyebrow">Venir au Crystal</p>
+                <h1>Plan d'accès</h1>
+                <address>Le Crystal<br>2 rue de la Briqueterie, 77470 Poincy</address>
+                <div class="map-frame">
+                    <iframe title="Plan d'accès Le Crystal" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=2%20rue%20de%20la%20Briqueterie%2077470%20Poincy&output=embed"></iframe>
+                </div>
+                <div class="cta-row">
+                    <a class="button button--primary" href="https://www.google.com/maps/dir/?api=1&destination=2+rue+de+la+Briqueterie+77470+Poincy" target="_blank" rel="noopener">Itinéraire Google Maps</a>
+                    <a class="button button--ghost" href="tel:+33670446998">06.70.44.69.98</a>
+                </div>
+                <a class="back-link" href="test-e.html">← Retour à l'accueil</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <nav class="footer__menu" aria-label="Liens légaux">
+            <span>L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</span>
+            <span class="footer__separator" aria-hidden="true">|</span>
+            <a href="politique-confidentialite.html">Politique de Confidentialité</a>
+            <a href="mentions-legales.html">Mentions Légales</a>
+            <a href="reglement-interieur.html">Règlement Intérieur</a>
+        </nav>
+    </footer>
+
+    <nav class="dock" aria-label="Actions rapides">
+        <a href="tarifs-reservation.html">Tarif</a>
+        <b aria-hidden="true">◆</b>
+        <a href="plan-acces.html" aria-current="page">Itinéraire</a>
+        <b aria-hidden="true">◆</b>
+        <a href="privatisation.html">Privatisation</a>
+    </nav>
+</body>
+</html>

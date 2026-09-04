@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Test D - Synthèse | Le Crystal</title>
+    <title>Test E - Accueil restructuré | Le Crystal</title>
     <meta name="robots" content="noindex">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -114,7 +114,7 @@
         .site-nav::-webkit-scrollbar { display: none; }
         .site-nav b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
 
-        /* ---------- HERO VIDEO (test A) ---------- */
+        /* ---------- HERO VIDEO ---------- */
         .cine {
             position: relative;
             min-height: min(82vh, 44rem);
@@ -124,7 +124,10 @@
             text-align: center;
         }
 
-        .cine__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.12) saturate(1.1); }
+        .cine__video {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+            filter: brightness(1.12) saturate(1.1);
+        }
 
         .cine__veil {
             position: absolute;
@@ -163,7 +166,7 @@
 
         @keyframes bob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 0.5rem); } }
 
-        /* ---------- BANDEAU DEFILANT (test A) ---------- */
+        /* ---------- BANDEAU DEFILANT ---------- */
         .marquee {
             overflow: hidden;
             background: linear-gradient(90deg, var(--purple-deep), var(--purple), var(--purple-deep));
@@ -183,8 +186,22 @@
         .section { padding: 4rem 0; }
         .wrap { width: min(100%, 72rem); margin: 0 auto; padding: 0 1.25rem; }
 
+        .section--alt { background: var(--panel); }
+
+        .chapter {
+            display: flex; align-items: center; gap: 0.9rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .chapter__num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 1.9rem; height: 1.9rem; border-radius: 50%;
+            border: 1px solid var(--gold); color: var(--gold);
+            font-size: 0.75rem; font-weight: 800;
+        }
+
         .eyebrow {
-            margin: 0 0 0.4rem;
+            margin: 0;
             color: var(--gold);
             font-size: 0.7rem;
             font-weight: 800;
@@ -212,7 +229,7 @@
         .button--ghost { color: var(--gold); background: rgba(0, 0, 0, 0.4); }
         .button:hover { transform: translateY(-3px); box-shadow: 0 0.8rem 2rem rgba(230, 202, 98, 0.25); }
 
-        /* ---------- CE SOIR AU CRYSTAL (test A) ---------- */
+        /* ---------- 2 ESPACES 2 UNIVERS ---------- */
         .tiles { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
 
         .tile {
@@ -226,134 +243,15 @@
         .tile__body { position: relative; width: 100%; padding: 1.2rem; background: linear-gradient(180deg, transparent, rgba(2, 2, 2, 0.9) 60%); }
         .tile h3 { margin: 0 0 0.3rem; font-size: 1.05rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; }
         .tile p { margin: 0; color: var(--muted); font-size: 0.9rem; }
-        .tile::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 0 rgba(182, 90, 217, 0); transition: box-shadow 0.35s ease; }
-        .tile:hover::after { box-shadow: inset 0 0 0 2px rgba(182, 90, 217, 0.75); }
-
         .tile__tag {
             position: absolute; top: 1rem; left: 1rem; z-index: 2;
             padding: 0.3rem 0.8rem; border-radius: 999px;
             background: var(--gold); color: #100914;
             font-size: 0.62rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
         }
-
         .tile__time { display: block; margin-bottom: 0.35rem; color: var(--white); font-size: 0.95rem; font-weight: 800; }
 
-        /* ---------- TARIFS ---------- */
-        .prices { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
-
-        .price {
-            position: relative;
-            padding: 1.6rem 1.4rem;
-            border-radius: var(--radius);
-            background: var(--panel);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .price:hover { transform: translateY(-4px); border-color: rgba(230, 202, 98, 0.5); }
-        .price h3 { margin: 0 0 0.6rem; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); }
-        .price strong { display: block; font-size: clamp(1.9rem, 6vw, 2.6rem); font-weight: 900; line-height: 1; color: var(--gold); }
-        .price p { margin: 0.6rem 0 0; color: var(--muted); font-size: 0.9rem; }
-
-        .price--highlight {
-            border-color: var(--gold);
-            background: linear-gradient(160deg, rgba(230, 202, 98, 0.14), rgba(122, 48, 153, 0.2));
-            box-shadow: 0 0 2.5rem rgba(230, 202, 98, 0.16);
-        }
-
-        /* ---------- RESERVATION ---------- */
-        .booking {
-            display: grid;
-            gap: 1.4rem;
-            align-items: center;
-            padding: 1.8rem 1.5rem;
-            border-radius: var(--radius);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: linear-gradient(160deg, rgba(122, 48, 153, 0.32), var(--panel));
-        }
-
-        .booking p { margin: 0 0 0.6rem; color: var(--muted); }
-        .booking strong { color: var(--white); }
-
-        .limited {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.35rem 0.9rem; border-radius: 999px;
-            border: 1px solid #ff4d5e; color: #ff4d5e;
-            font-size: 0.66rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
-        }
-
-        .limited::before { content: ""; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: #ff4d5e; box-shadow: 0 0 0.6rem #ff4d5e; }
-
-        .button--wa { background: #25d366; border-color: #25d366; color: #06280f; }
-
-        /* ---------- REGLES ---------- */
-        .rules { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
-
-        .rules__list { margin: 0; padding: 0; list-style: none; }
-
-        .rules__list li {
-            position: relative;
-            padding: 0.6rem 0 0.6rem 1.6rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--muted);
-            font-size: 0.92rem;
-        }
-
-        .rules__list li:last-child { border-bottom: 0; }
-        .rules__list li::before { content: "◆"; position: absolute; left: 0; top: 0.6rem; color: var(--purple); font-size: 0.7rem; }
-        .rules__list strong { color: var(--white); }
-
-        .spirit {
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--line);
-            background: linear-gradient(160deg, rgba(122, 48, 153, 0.22), var(--panel));
-        }
-
-        .spirit p { margin: 0 0 0.8rem; color: var(--gold); font-size: clamp(1rem, 3vw, 1.2rem); font-weight: 700; line-height: 1.45; }
-        .spirit a { color: var(--muted); font-size: 0.82rem; text-decoration: underline; text-underline-offset: 0.25rem; }
-
-        /* ---------- HORAIRES + LIVE (test B) ---------- */
-        .duo { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
-
-        .card {
-            position: relative; border-radius: var(--radius); overflow: hidden;
-            background: var(--panel); border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            min-height: 15rem;
-        }
-
-        .card:hover { transform: translateY(-4px); border-color: rgba(230, 202, 98, 0.5); }
-        .card__body { position: relative; padding: 1.5rem; height: 100%; display: flex; flex-direction: column; justify-content: center; }
-
-        .card--hours { background: linear-gradient(160deg, rgba(122, 48, 153, 0.35), var(--panel)); }
-        .hours-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.12); font-size: 0.92rem; }
-        .hours-row:last-child { border-bottom: 0; }
-        .hours-row strong { text-align: right; }
-        .hours-row--open strong { color: var(--gold); }
-
-        .hours-row--detailed { display: block; }
-        .hours-row--detailed__day { display: block; margin-bottom: 0.4rem; font-weight: 800; color: var(--white); }
-        .hours-sub { display: flex; justify-content: space-between; gap: 1rem; padding: 0.15rem 0; }
-        .hours-sub strong { color: var(--gold); text-align: right; }
-
-        .card--live video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-        .card--live .card__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2, 2, 2, 0.2), rgba(2, 2, 2, 0.88)); }
-        .card--live .card__body { justify-content: flex-end; }
-        .card--live h3 { margin: 0 0 0.25rem; font-size: 1.3rem; font-weight: 900; }
-        .card--live p { margin: 0; color: var(--muted); font-size: 0.9rem; }
-
-        .badge {
-            position: absolute; top: 1rem; left: 1rem; z-index: 2;
-            display: inline-flex; align-items: center; gap: 0.45rem;
-            padding: 0.3rem 0.8rem; border-radius: 999px;
-            background: rgba(2, 2, 2, 0.65); border: 1px solid var(--gold);
-            color: var(--gold); font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
-        }
-
-        .badge::before { content: ""; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: #ff4d5e; box-shadow: 0 0 0.6rem #ff4d5e; }
-
-        /* ---------- NOS DERNIERES SOIREES (test B) ---------- */
+        /* ---------- NOS DERNIERES SOIREES ---------- */
         .rail { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; scroll-snap-type: x mandatory; scrollbar-width: none; }
         .rail::-webkit-scrollbar { display: none; }
 
@@ -373,24 +271,82 @@
         .head-row h2 { margin-bottom: 0.8rem; }
         .hint { color: var(--muted); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; }
 
-        /* ---------- GALERIE MOSAIQUE (test C) ---------- */
-        .mosaic { display: grid; gap: 0.7rem; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 9rem; }
-        .mosaic img { width: 100%; height: 100%; object-fit: cover; border-radius: 0.9rem; filter: saturate(0.85); transition: transform 0.5s ease, filter 0.5s ease; }
-        .mosaic img:hover { transform: scale(1.03); filter: saturate(1.2); }
-        .mosaic .big { grid-column: span 2; grid-row: span 2; }
-        .mosaic .tall { grid-row: span 2; }
-        .mosaic .wide { grid-column: span 2; }
+        /* ---------- INSTAGRAM PROGRAMMATION ---------- */
+        .insta-card {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            min-height: 22rem;
+            border: 1px solid var(--purple);
+            display: flex;
+            align-items: flex-end;
+        }
 
-        /* ---------- PANNEAUX IMMERSIFS (test C) ---------- */
-        .panel { position: relative; min-height: min(80vh, 42rem); display: grid; align-items: center; overflow: hidden; }
-        .panel__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-        .panel__veil { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(2, 2, 2, 0.94) 0%, rgba(2, 2, 2, 0.7) 45%, rgba(2, 2, 2, 0.35) 100%); }
-        .panel__inner { position: relative; width: min(100%, 72rem); margin: 0 auto; padding: 4rem 1.25rem; }
-        .narrow { max-width: 34rem; }
+        .insta-card video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .insta-card .card__veil { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(2, 2, 2, 0.9) 0%, rgba(2, 2, 2, 0.55) 55%, rgba(2, 2, 2, 0.25) 100%); }
+        .insta-card .card__body { position: relative; padding: 2rem; max-width: 30rem; }
+        .insta-card h3 { margin: 0 0 0.5rem; font-size: clamp(1.3rem, 4vw, 1.9rem); font-weight: 900; }
+        .insta-card p { margin: 0 0 1.2rem; color: var(--muted); }
 
-        .map-frame { margin-top: 1.4rem; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16 / 9; }
-        .map-frame iframe { width: 100%; height: 100%; border: 0; filter: invert(0.9) hue-rotate(180deg) saturate(0.7); }
-        address { font-style: normal; color: var(--muted); }
+        .badge {
+            position: absolute; top: 1rem; left: 1rem; z-index: 2;
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            padding: 0.3rem 0.8rem; border-radius: 999px;
+            background: rgba(2, 2, 2, 0.65); border: 1px solid var(--gold);
+            color: var(--gold); font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+        }
+
+        .badge::before { content: ""; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: #ff4d5e; box-shadow: 0 0 0.6rem #ff4d5e; }
+
+        /* ---------- ESPRIT DU CRYSTAL ---------- */
+        .rules { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+
+        .rules__list {
+            margin: 0; padding: 1.2rem 1.2rem 1.2rem 2.2rem; list-style: none;
+            border: 1px solid var(--purple); border-radius: var(--radius);
+        }
+
+        .rules__list li {
+            position: relative;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .rules__list li:last-child { border-bottom: 0; }
+        .rules__list li::before { content: "◆"; position: absolute; left: -1.2rem; top: 0.6rem; color: var(--purple); font-size: 0.7rem; }
+        .rules__list strong { color: var(--white); }
+
+        .spirit {
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--line);
+            background: linear-gradient(160deg, rgba(122, 48, 153, 0.22), var(--panel));
+        }
+
+        .spirit p { margin: 0 0 0.8rem; color: var(--gold); font-size: clamp(1rem, 3vw, 1.2rem); font-weight: 700; line-height: 1.45; }
+        .spirit a { color: var(--muted); font-size: 0.82rem; text-decoration: underline; text-underline-offset: 0.25rem; }
+
+        /* ---------- HORAIRES ---------- */
+        .card {
+            position: relative; border-radius: var(--radius); overflow: hidden;
+            background: var(--panel); border: 1px solid rgba(255, 255, 255, 0.08);
+            max-width: 30rem;
+        }
+
+        .card__body { position: relative; padding: 1.5rem; }
+
+        .card--hours { background: linear-gradient(160deg, rgba(122, 48, 153, 0.35), var(--panel)); }
+        .hours-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.12); font-size: 0.92rem; }
+        .hours-row:last-child { border-bottom: 0; }
+        .hours-row strong { text-align: right; }
+        .hours-row--open strong { color: var(--gold); }
+
+        .hours-row--detailed { display: block; }
+        .hours-row--detailed__day { display: block; margin-bottom: 0.4rem; font-weight: 800; color: var(--white); }
+        .hours-sub { display: flex; justify-content: space-between; gap: 1rem; padding: 0.15rem 0; }
+        .hours-sub strong { color: var(--gold); text-align: right; }
 
         /* ---------- FOOTER ---------- */
         .footer { padding: 1.1rem 1.25rem; background: #f4f4f4; color: #9d9aa2; }
@@ -420,15 +376,8 @@
         .dock b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
 
         @media (min-width: 48rem) {
-            .duo { grid-template-columns: 1.15fr 1fr; }
-            .booking { grid-template-columns: 1.4fr 1fr; }
-            .rules { grid-template-columns: 1.3fr 1fr; }
             .dock { display: none; }
             body { padding-bottom: 0; }
-        }
-
-        @media (max-width: 40rem) {
-            .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 7rem; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -453,15 +402,15 @@
     </section>
 
     <nav class="site-nav" aria-label="Navigation principale">
-        <a href="#privatisation">Privatisation</a>
+        <a href="#esprit">Esprit</a>
         <b aria-hidden="true">◆</b>
         <a href="#horaires">Horaires</a>
         <b aria-hidden="true">◆</b>
-        <a href="#contact">Réservation</a>
+        <a href="tarifs-reservation.html">Réservations</a>
     </nav>
 
     <main>
-        <!-- HERO VIDEO -->
+        <!-- 1. HERO VIDEO -->
         <section class="cine" aria-label="Présentation">
             <video class="cine__video" autoplay muted loop playsinline preload="metadata" poster="assets/img/DSCF7326.png">
                 <source src="assets/video/Video1.mp4" type="video/mp4">
@@ -472,8 +421,8 @@
                 <h1 class="cine__title">LE CRYSTAL</h1>
                 <p class="cine__sub">Un lieu agrandi, repensé, plus chaleureux. Deux espaces, deux univers musicaux, les vendredis et samedis.</p>
                 <div class="cta-row" style="justify-content:center">
-                    <a class="button button--primary" href="#contact">Réserver</a>
-                    <a class="button button--ghost" href="#privatisation">Privatiser le lieu</a>
+                    <a class="button button--primary" href="tarifs-reservation.html">Réserver</a>
+                    <a class="button button--ghost" href="privatisation.html">Privatiser le lieu</a>
                 </div>
             </div>
             <span class="scroll-hint" aria-hidden="true">⌄</span>
@@ -487,10 +436,10 @@
             </div>
         </div>
 
-        <!-- 2 ESPACES 2 UNIVERS -->
+        <!-- 2. 2 ESPACES 2 UNIVERS -->
         <section class="section" id="musique">
             <div class="wrap reveal">
-                <p class="eyebrow">La musique</p>
+                <div class="chapter"><span class="chapter__num">01</span><p class="eyebrow">La musique</p></div>
                 <h2>2 espaces, 2 univers</h2>
                 <div class="tiles">
                     <article class="tile">
@@ -522,95 +471,12 @@
             </div>
         </section>
 
-        <!-- TARIFS -->
-        <section class="section" id="tarifs">
+        <!-- 3. NOS DERNIERES SOIREES -->
+        <section class="section section--alt">
             <div class="wrap reveal">
-                <p class="eyebrow">Sur place</p>
-                <h2>Tarifs</h2>
-                <div class="prices">
-                    <article class="price">
-                        <h3>Entrée</h3>
-                        <strong>20 €</strong>
-                        <p>Une consommation incluse.</p>
-                    </article>
-                    <article class="price price--highlight">
-                        <h3>Pour les femmes</h3>
-                        <strong>Gratuit</strong>
-                        <p>Entre 23h30 et 00h00. Une consommation incluse.</p>
-                    </article>
-                    <article class="price">
-                        <h3>Vestiaire</h3>
-                        <strong>2 €</strong>
-                        <p>Toute récupération pendant la soirée est facturée 2 €. La récupération définitive au moment du départ reste gratuite.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- RESERVATION -->
-        <section class="section" id="contact">
-            <div class="wrap reveal">
-                <p class="eyebrow">Votre table</p>
-                <h2>Réservation</h2>
-                <div class="booking">
-                    <div>
-                        <p>Vous souhaitez une table pendant la soirée ? Les réservations se font <strong>exclusivement sur WhatsApp</strong>.</p>
-                        <span class="limited">Places limitées</span>
-                    </div>
-                    <div class="cta-row" style="margin-top:0">
-                        <a class="button button--wa" href="https://wa.me/33670446998?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20table%20au%20Crystal" target="_blank" rel="noopener">Réserver sur WhatsApp</a>
-                        <a class="button button--ghost" href="tel:+33670446998">06.70.44.69.98</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- HORAIRES + EN LIVE -->
-        <section class="section" id="horaires">
-            <div class="wrap reveal">
-                <p class="eyebrow">Infos pratiques</p>
-                <h2>Horaires</h2>
-                <div class="duo">
-                    <article class="card card--hours">
-                        <div class="card__body">
-                            <div class="hours-row"><span>Lundi → Jeudi</span><strong>Fermé</strong></div>
-                            <div class="hours-row hours-row--open hours-row--detailed">
-                                <span class="hours-row--detailed__day">Vendredi</span>
-                                <div class="hours-sub"><span>Intérieur</span><strong>23h30 → 04h00</strong></div>
-                                <div class="hours-sub"><span>Extérieur</span><strong>23h45 → 03h00</strong></div>
-                            </div>
-                            <div class="hours-row hours-row--open hours-row--detailed">
-                                <span class="hours-row--detailed__day">Samedi</span>
-                                <div class="hours-sub"><span>Intérieur</span><strong>23h30 → 04h00</strong></div>
-                                <div class="hours-sub"><span>Extérieur</span><strong>23h45 → 03h00</strong></div>
-                            </div>
-                            <div class="hours-row"><span>Dimanche</span><strong>Fermé</strong></div>
-                        </div>
-                    </article>
-
-                    <a class="card card--live" href="https://www.instagram.com/lecrystal_club/" target="_blank" rel="noopener">
-                        <video autoplay muted loop playsinline preload="metadata" poster="assets/img/DSCF7148.png">
-                            <source src="assets/video/Videonewyear2025.mp4" type="video/mp4">
-                        </video>
-                        <span class="badge">En live</span>
-                        <div class="card__veil" aria-hidden="true"></div>
-                        <div class="card__body">
-                            <h3>@lecrystal_club</h3>
-                            <p>Suivez les prochaines soirées sur Instagram</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- NOS DERNIERES SOIREES -->
-        <section class="section">
-            <div class="wrap reveal">
+                <div class="chapter"><span class="chapter__num">02</span><p class="eyebrow">Rétrospective</p></div>
                 <div class="head-row">
-                    <div>
-                        <p class="eyebrow">Rétrospective</p>
-                        <h2>Nos dernières soirées</h2>
-                    </div>
+                    <h2>Nos dernières soirées</h2>
                     <span class="hint">Faites glisser →</span>
                 </div>
                 <div class="rail">
@@ -642,10 +508,30 @@
             </div>
         </section>
 
-        <!-- AVANT DE NOUS REJOINDRE -->
-        <section class="section" id="regles">
+        <!-- 4. INSTAGRAM PROGRAMMATION -->
+        <section class="section" id="instagram">
             <div class="wrap reveal">
-                <p class="eyebrow">Avant de nous rejoindre</p>
+                <div class="chapter"><span class="chapter__num">03</span><p class="eyebrow">Suivez-nous</p></div>
+                <h2>Découvrez la programmation de la semaine sur Instagram</h2>
+                <a class="insta-card" href="https://www.instagram.com/lecrystal_club/" target="_blank" rel="noopener">
+                    <video autoplay muted loop playsinline preload="metadata" poster="assets/img/DSCF7148.png">
+                        <source src="assets/video/Videonewyear2025.mp4" type="video/mp4">
+                    </video>
+                    <span class="badge">En live</span>
+                    <div class="card__veil" aria-hidden="true"></div>
+                    <div class="card__body">
+                        <h3>@lecrystal_club</h3>
+                        <p>Line-up, événements et coulisses de la semaine : tout se passe d'abord sur Instagram.</p>
+                        <span class="button button--primary" style="display:inline-flex">Suivre le compte</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 5. ESPRIT DU CRYSTAL -->
+        <section class="section section--alt" id="esprit">
+            <div class="wrap reveal">
+                <div class="chapter"><span class="chapter__num">04</span><p class="eyebrow">Avant de nous rejoindre</p></div>
                 <h2>L'esprit du Crystal</h2>
                 <div class="rules">
                     <ul class="rules__list">
@@ -662,35 +548,29 @@
             </div>
         </section>
 
-        <!-- PRIVATISEZ LE CRYSTAL -->
-        <section class="panel" id="privatisation">
-            <img class="panel__bg" src="assets/img/DSCF7253.png" alt="" loading="lazy">
-            <div class="panel__veil" aria-hidden="true"></div>
-            <div class="panel__inner">
-                <div class="narrow reveal">
-                    <p class="eyebrow">Événements</p>
-                    <h2>Privatisez le Crystal</h2>
-                    <p class="lead">Anniversaire, soirée d'entreprise, afterwork ou événement privé : nous mettons notre cadre intimiste à votre disposition pour créer une soirée à votre image.</p>
-                    <div class="cta-row">
-                        <a class="button button--primary" href="mailto:contact@lecrystalbar.com">Demander un devis</a>
-                        <a class="button button--ghost" href="tel:+33670446998">Nous appeler</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- VENIR AU CRYSTAL -->
-        <section class="section" id="acces">
+        <!-- 6. HORAIRES -->
+        <section class="section" id="horaires">
             <div class="wrap reveal">
-                <p class="eyebrow">Venir au Crystal</p>
-                <h2>Plan d'accès</h2>
-                <address>Le Crystal<br>2 rue de la Briqueterie, 77470 Poincy</address>
-                <div class="map-frame">
-                    <iframe title="Plan d'accès Le Crystal" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=2%20rue%20de%20la%20Briqueterie%2077470%20Poincy&output=embed"></iframe>
-                </div>
+                <div class="chapter"><span class="chapter__num">05</span><p class="eyebrow">Infos pratiques</p></div>
+                <h2>Horaires</h2>
+                <article class="card card--hours">
+                    <div class="card__body">
+                        <div class="hours-row"><span>Lundi → Jeudi</span><strong>Fermé</strong></div>
+                        <div class="hours-row hours-row--open hours-row--detailed">
+                            <span class="hours-row--detailed__day">Vendredi</span>
+                            <div class="hours-sub"><span>Intérieur</span><strong>23h30 → 04h00</strong></div>
+                            <div class="hours-sub"><span>Extérieur</span><strong>23h45 → 03h00</strong></div>
+                        </div>
+                        <div class="hours-row hours-row--open hours-row--detailed">
+                            <span class="hours-row--detailed__day">Samedi</span>
+                            <div class="hours-sub"><span>Intérieur</span><strong>23h30 → 04h00</strong></div>
+                            <div class="hours-sub"><span>Extérieur</span><strong>23h45 → 03h00</strong></div>
+                        </div>
+                        <div class="hours-row"><span>Dimanche</span><strong>Fermé</strong></div>
+                    </div>
+                </article>
                 <div class="cta-row">
-                    <a class="button button--wa" href="https://wa.me/33670446998?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20table%20au%20Crystal" target="_blank" rel="noopener">Réserver sur WhatsApp</a>
-                    <a class="button button--ghost" href="mailto:contact@lecrystalbar.com">contact@lecrystalbar.com</a>
+                    <a class="button button--primary" href="tarifs-reservation.html">Voir les tarifs et réserver</a>
                 </div>
             </div>
         </section>
@@ -707,11 +587,11 @@
     </footer>
 
     <nav class="dock" aria-label="Actions rapides">
-        <a href="#tarifs">Tarif</a>
+        <a href="tarifs-reservation.html">Tarif</a>
         <b aria-hidden="true">◆</b>
-        <a href="https://www.google.com/maps?q=2+rue+de+la+Briqueterie+77470+Poincy" target="_blank" rel="noopener">Itinéraire</a>
+        <a href="plan-acces.html">Itinéraire</a>
         <b aria-hidden="true">◆</b>
-        <a href="https://www.instagram.com/lecrystal_club/" target="_blank" rel="noopener">Instagram</a>
+        <a href="privatisation.html">Privatisation</a>
     </nav>
 
     <script>

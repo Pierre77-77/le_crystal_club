@@ -9,30 +9,60 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        .topbar,
+        .site-nav,
+        .dock {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            min-height: 3rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            background: linear-gradient(90deg, var(--purple), #c06be1, var(--purple));
+            color: #09050b;
+        }
+
+        .site-nav { position: sticky; top: 0; z-index: 20; overflow-x: auto; scrollbar-width: none; }
+        .site-nav::-webkit-scrollbar { display: none; }
+        .topbar b, .site-nav b, .dock b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        .dock { position: fixed; bottom: 0; left: 0; right: 0; z-index: 30; }
+        body { padding-bottom: 3.4rem; }
+
+        .footer { padding: 1.1rem 1.25rem; }
+
+        @media (min-width: 48rem) {
+            .dock { display: none; }
+            body { padding-bottom: 0; }
+        }
+    </style>
 </head>
 <body>
     <header class="topbar" aria-label="Réseaux sociaux">
-        <a href="https://www.facebook.com/profile.php?id=61567891615750" aria-label="Facebook Le Crystal">f</a>
-        <a href="https://www.instagram.com/lecrystal_club" aria-label="Instagram Le Crystal">◎</a>
+        <a href="https://www.facebook.com/profile.php?id=61567891615750">Facebook</a>
+        <b aria-hidden="true">◆</b>
+        <a href="https://www.instagram.com/lecrystal_club/">Instagram</a>
     </header>
 
     <main>
         <section class="page-hero">
-            <a class="page-hero__brand" href="index.html" aria-label="Retour à l'accueil">
+            <a class="page-hero__brand" href="test-e.html" aria-label="Retour à l'accueil">
                 <img src="assets/img/logo-crystal-full.png" alt="Logo Le Crystal">
             </a>
         </section>
 
         <nav class="site-nav" aria-label="Navigation principale">
-            <a href="index.html#horaires">Horaires</a>
-            <span aria-hidden="true">◆</span>
-            <a href="index.html#privatisation">Privatisation</a>
-            <span aria-hidden="true">◆</span>
-            <a href="index.html#acces">Plan d'accès</a>
-            <span aria-hidden="true">◆</span>
-            <a href="index.html#contact">Contact</a>
-            <span aria-hidden="true">◆</span>
-            <a href="index.html#galerie">Galerie</a>
+            <a href="test-e.html">Accueil</a>
+            <b aria-hidden="true">◆</b>
+            <a href="test-e.html#horaires">Horaires</a>
+            <b aria-hidden="true">◆</b>
+            <a href="tarifs-reservation.html">Réservations</a>
         </nav>
 
         <article class="legal-page">
@@ -104,5 +134,13 @@
             <a href="reglement-interieur.html">Règlement Intérieur</a>
         </nav>
     </footer>
+
+    <nav class="dock" aria-label="Actions rapides">
+        <a href="tarifs-reservation.html">Tarif</a>
+        <b aria-hidden="true">◆</b>
+        <a href="plan-acces.html">Itinéraire</a>
+        <b aria-hidden="true">◆</b>
+        <a href="privatisation.html">Privatisation</a>
+    </nav>
 </body>
 </html>
