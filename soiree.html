@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Soirée | Le Crystal</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #020202;
+            --purple: #b65ad9;
+            --purple-deep: #7a3099;
+            --gold: #e6ca62;
+            --white: #ffffff;
+            --muted: #d6ccd8;
+            --panel: #0d0a0f;
+            --line: rgba(230, 202, 98, 0.42);
+            --radius: 1.3rem;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            padding-bottom: 3.4rem;
+            color: var(--white);
+            background: var(--black);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; }
+
+        .topbar, .site-nav, .dock {
+            background: linear-gradient(90deg, var(--purple), #c06be1, var(--purple));
+            color: #09050b;
+        }
+
+        .topbar {
+            display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+            min-height: 3rem; padding: 0.75rem 1rem;
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+        }
+
+        .topbar b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        .page-hero {
+            padding: 2rem 1.25rem;
+            background: radial-gradient(circle at 50% 36%, rgba(182, 90, 217, 0.22), transparent 10rem), #000;
+            text-align: center;
+        }
+
+        .page-hero__brand { display: inline-flex; width: min(60vw, 15rem); }
+        .page-hero__brand img { display: block; width: 100%; height: auto; }
+
+        .site-nav {
+            position: sticky; top: 0; z-index: 20;
+            display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+            min-height: 3rem; overflow-x: auto; padding: 0.75rem 1rem;
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+            white-space: nowrap; scrollbar-width: none;
+        }
+
+        .site-nav::-webkit-scrollbar { display: none; }
+        .site-nav b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        .section { padding: 3rem 0; }
+        .wrap { width: min(100%, 78rem); margin: 0 auto; padding: 0 1.25rem; }
+
+        .eyebrow { margin: 0; color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; }
+        h1 { margin: 0 0 0.4rem; font-size: clamp(1.7rem, 5.5vw, 2.7rem); font-weight: 900; line-height: 1.05; }
+        .count { margin: 0 0 1.8rem; color: var(--muted); font-size: 0.85rem; }
+
+        .grid { display: grid; gap: 0.6rem; grid-template-columns: repeat(2, 1fr); }
+        .grid button {
+            padding: 0; border: 1px solid var(--purple); border-radius: 0.7rem; overflow: hidden;
+            background: var(--panel); cursor: pointer; aspect-ratio: 1 / 1;
+        }
+        .grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .grid button:hover img { transform: scale(1.06); }
+
+        .back-link { display: inline-block; margin-top: 2rem; color: var(--muted); font-size: 0.82rem; text-decoration: underline; text-underline-offset: 0.25rem; }
+
+        .empty { color: var(--muted); padding: 2rem 0; }
+
+        /* ---------- LIGHTBOX ---------- */
+        .lightbox {
+            position: fixed; inset: 0; z-index: 100;
+            background: rgba(2, 2, 2, 0.96);
+            display: none; align-items: center; justify-content: center;
+        }
+        .lightbox.is-open { display: flex; }
+        .lightbox img { max-width: min(92vw, 60rem); max-height: 82vh; border-radius: 0.6rem; }
+        .lightbox__close, .lightbox__prev, .lightbox__next {
+            position: absolute; border: 1px solid var(--gold); background: rgba(0, 0, 0, 0.5); color: var(--gold);
+            border-radius: 999px; width: 2.8rem; height: 2.8rem; font-size: 1.2rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .lightbox__close { top: 1rem; right: 1rem; }
+        .lightbox__prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+        .lightbox__next { right: 1rem; top: 50%; transform: translateY(-50%); }
+        .lightbox__count { position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 0.8rem; }
+
+        .footer { padding: 1.1rem 1.25rem; background: #f4f4f4; color: #9d9aa2; }
+        .footer__menu {
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+            gap: 0.45rem 0.85rem; max-width: 72rem; margin: 0 auto; text-align: center;
+            font-size: 0.95rem; font-weight: 400;
+        }
+        .footer__menu a { color: #8f8b94; }
+        .footer__menu a:hover { color: var(--purple-deep); }
+        .footer__separator { color: #beb9c2; }
+
+        .dock {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 30;
+            display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+            min-height: 3rem; padding: 0.75rem 1rem;
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+        }
+        .dock b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        @media (min-width: 40rem) {
+            .grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (min-width: 64rem) {
+            .grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        @media (min-width: 48rem) {
+            .dock { display: none; }
+            body { padding-bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar" aria-label="Réseaux sociaux">
+        <a href="https://www.facebook.com/profile.php?id=61567891615750">Facebook</a>
+        <b aria-hidden="true">◆</b>
+        <a href="https://www.instagram.com/lecrystal_club/">Instagram</a>
+    </header>
+
+    <section class="page-hero">
+        <a class="page-hero__brand" href="test-e.html" aria-label="Retour à l'accueil">
+            <img src="assets/img/logo-crystal-full.png" alt="Logo Le Crystal">
+        </a>
+    </section>
+
+    <nav class="site-nav" aria-label="Navigation principale">
+        <a href="test-e.html">Accueil</a>
+        <b aria-hidden="true">◆</b>
+        <a href="test-e.html#horaires">Horaires</a>
+        <b aria-hidden="true">◆</b>
+        <a href="tarifs-reservation.html">Réservations</a>
+    </nav>
+
+    <main>
+        <section class="section">
+            <div class="wrap">
+                <p class="eyebrow">Rétrospective</p>
+                <h1 id="titre">Soirée</h1>
+                <p class="count" id="compteur"></p>
+                <div class="grid" id="grille"></div>
+                <a class="back-link" href="test-e.html">← Retour à l'accueil</a>
+            </div>
+        </section>
+    </main>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo en plein écran">
+        <button class="lightbox__close" id="lbClose" aria-label="Fermer">✕</button>
+        <button class="lightbox__prev" id="lbPrev" aria-label="Photo précédente">‹</button>
+        <img id="lbImage" src="" alt="">
+        <button class="lightbox__next" id="lbNext" aria-label="Photo suivante">›</button>
+        <span class="lightbox__count" id="lbCount"></span>
+    </div>
+
+    <footer class="footer">
+        <nav class="footer__menu" aria-label="Liens légaux">
+            <span>L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</span>
+            <span class="footer__separator" aria-hidden="true">|</span>
+            <a href="politique-confidentialite.html">Politique de Confidentialité</a>
+            <a href="mentions-legales.html">Mentions Légales</a>
+            <a href="reglement-interieur.html">Règlement Intérieur</a>
+        </nav>
+    </footer>
+
+    <nav class="dock" aria-label="Actions rapides">
+        <a href="tarifs-reservation.html">Tarif</a>
+        <b aria-hidden="true">◆</b>
+        <a href="plan-acces.html">Itinéraire</a>
+        <b aria-hidden="true">◆</b>
+        <a href="privatisation.html">Privatisation</a>
+    </nav>
+
+    <script src="assets/js/galeries.js"></script>
+    <script>
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            var date = params.get('date');
+            var data = date ? GALERIES[date] : null;
+
+            var titreEl = document.getElementById('titre');
+            var compteurEl = document.getElementById('compteur');
+            var grilleEl = document.getElementById('grille');
+
+            if (!data) {
+                titreEl.textContent = 'Soirée introuvable';
+                grilleEl.innerHTML = '<p class="empty">Cette soirée n\'existe pas ou plus. <a href="test-e.html">Retour à l\'accueil</a>.</p>';
+                document.title = 'Soirée introuvable | Le Crystal';
+                return;
+            }
+
+            document.title = data.title + ' | Le Crystal';
+            titreEl.textContent = data.title;
+            compteurEl.textContent = data.files.length + ' photos';
+
+            var basePath = 'assets/galerie/' + date + '/';
+            var urls = data.files.map(function (f) { return basePath + encodeURIComponent(f); });
+
+            urls.forEach(function (url, index) {
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.setAttribute('aria-label', 'Agrandir la photo ' + (index + 1));
+                var img = document.createElement('img');
+                img.src = url;
+                img.alt = data.title + ' — photo ' + (index + 1);
+                img.loading = 'lazy';
+                btn.appendChild(img);
+                btn.addEventListener('click', function () { openLightbox(index); });
+                grilleEl.appendChild(btn);
+            });
+
+            var lightbox = document.getElementById('lightbox');
+            var lbImage = document.getElementById('lbImage');
+            var lbCount = document.getElementById('lbCount');
+            var current = 0;
+
+            function openLightbox(index) {
+                current = index;
+                showCurrent();
+                lightbox.classList.add('is-open');
+            }
+
+            function showCurrent() {
+                lbImage.src = urls[current];
+                lbCount.textContent = (current + 1) + ' / ' + urls.length;
+            }
+
+            function closeLightbox() { lightbox.classList.remove('is-open'); }
+            function prev() { current = (current - 1 + urls.length) % urls.length; showCurrent(); }
+            function next() { current = (current + 1) % urls.length; showCurrent(); }
+
+            document.getElementById('lbClose').addEventListener('click', closeLightbox);
+            document.getElementById('lbPrev').addEventListener('click', prev);
+            document.getElementById('lbNext').addEventListener('click', next);
+            lightbox.addEventListener('click', function (e) { if (e.target === lightbox) { closeLightbox(); } });
+
+            document.addEventListener('keydown', function (e) {
+                if (!lightbox.classList.contains('is-open')) { return; }
+                if (e.key === 'Escape') { closeLightbox(); }
+                if (e.key === 'ArrowLeft') { prev(); }
+                if (e.key === 'ArrowRight') { next(); }
+            });
+        })();
+    </script>
+</body>
+</html>
