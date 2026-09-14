@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demande de privatisation | Le Crystal</title>
+    <meta name="description" content="Demandez un devis pour privatiser Le Crystal à Meaux.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #020202;
+            --purple: #b65ad9;
+            --purple-deep: #7a3099;
+            --gold: #e6ca62;
+            --white: #ffffff;
+            --muted: #d6ccd8;
+            --panel: #0d0a0f;
+            --line: rgba(230, 202, 98, 0.42);
+            --danger: #ff8f9a;
+            --radius: 0.5rem;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; padding-bottom: 3.4rem; color: var(--white); background: var(--black); font-family: 'Montserrat', sans-serif; line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; }
+
+        .topbar, .site-nav, .dock { background: linear-gradient(90deg, var(--purple), #c06be1, var(--purple)); color: #09050b; }
+        .topbar { display: flex; align-items: center; justify-content: center; gap: 0.7rem; min-height: 3rem; padding: 0.75rem 1rem; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+        .topbar b, .site-nav b, .dock b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
+
+        .page-hero { padding: 1.6rem 1.25rem; background: radial-gradient(circle at 50% 36%, rgba(182, 90, 217, 0.22), transparent 10rem), #000; text-align: center; }
+        .page-hero__brand { display: inline-flex; width: min(60vw, 15rem); }
+        .page-hero__brand img { width: 100%; height: auto; }
+
+        .site-nav { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: center; gap: 0.7rem; min-height: 3rem; overflow-x: auto; padding: 0.75rem 1rem; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; scrollbar-width: none; }
+        .site-nav::-webkit-scrollbar { display: none; }
+
+        .section { padding: 3.8rem 0; }
+        .section--alt { background: var(--panel); }
+        .wrap { width: min(100%, 68rem); margin: 0 auto; padding: 0 1.25rem; }
+        .eyebrow { margin: 0 0 0.55rem; color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; }
+        h1 { margin: 0; font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 900; line-height: 1.05; }
+        .lead { max-width: 39rem; margin: 1rem 0 0; color: var(--muted); }
+
+        .form-layout { display: grid; gap: 1.2rem; margin-top: 2.2rem; }
+        .form-intro { padding: 1.45rem; border-left: 2px solid var(--gold); background: rgba(230, 202, 98, 0.07); }
+        .form-intro p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+        .form-intro strong { color: var(--white); }
+
+        form { padding: clamp(1.25rem, 4vw, 2.25rem); border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(150deg, rgba(122, 48, 153, 0.2), var(--panel) 42%); }
+        .form-section { padding: 0 0 1.8rem; margin: 0 0 1.8rem; border: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .form-section:last-of-type { padding-bottom: 0; margin-bottom: 1.8rem; border-bottom: 0; }
+        legend { padding: 0; margin-bottom: 1rem; color: var(--gold); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.19em; text-transform: uppercase; }
+        .fields { display: grid; gap: 1rem; }
+        .field { display: grid; gap: 0.4rem; }
+        label, .field-label { color: var(--white); font-size: 0.82rem; font-weight: 700; }
+        .required { color: var(--gold); }
+        input, select, textarea { width: 100%; min-height: 3rem; padding: 0.7rem 0.8rem; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 0.25rem; outline: 0; color: var(--white); background: rgba(2, 2, 2, 0.72); font: inherit; font-size: 0.92rem; }
+        select { appearance: auto; }
+        option { color: var(--black); background: var(--white); }
+        textarea { min-height: 8rem; resize: vertical; }
+        input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(230, 202, 98, 0.14); }
+        input::placeholder, textarea::placeholder { color: #9f96a1; }
+
+        .options { display: grid; gap: 0.65rem; }
+        .option { position: relative; display: flex; align-items: center; gap: 0.75rem; min-height: 3rem; padding: 0.65rem 0.8rem; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 0.25rem; color: var(--muted); cursor: pointer; transition: border-color 0.2s ease, background 0.2s ease; }
+        .option:hover { border-color: rgba(230, 202, 98, 0.7); }
+        .option:has(input:checked) { border-color: var(--gold); background: rgba(230, 202, 98, 0.09); color: var(--white); }
+        .option input { width: 1rem; min-height: 1rem; margin: 0; accent-color: var(--gold); }
+
+        .consent { display: flex; align-items: flex-start; gap: 0.7rem; margin: 0 0 1.4rem; color: var(--muted); font-size: 0.78rem; }
+        .consent input { width: 1rem; min-height: 1rem; margin: 0.25rem 0 0; accent-color: var(--gold); }
+        .consent a { color: var(--gold); text-decoration: underline; text-underline-offset: 0.2rem; }
+        .honeypot { position: absolute; left: -9999px; }
+        .form-status { display: none; margin: 0 0 1.25rem; padding: 0.85rem 1rem; border-left: 2px solid var(--gold); background: rgba(230, 202, 98, 0.09); color: var(--white); font-size: 0.88rem; }
+        .form-status.is-visible { display: block; }
+        .form-status--error { border-color: var(--danger); background: rgba(255, 143, 154, 0.1); }
+        .form-error { min-height: 1.6rem; margin: 0 0 0.75rem; color: var(--danger); font-size: 0.84rem; font-weight: 600; }
+        .button { display: inline-flex; align-items: center; justify-content: center; min-height: 3.15rem; padding: 0.85rem 1.7rem; border: 1px solid var(--gold); border-radius: 999px; cursor: pointer; font: inherit; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .button--primary { background: var(--gold); color: #100914; }
+        .button:hover { transform: translateY(-2px); box-shadow: 0 0.7rem 1.6rem rgba(230, 202, 98, 0.2); }
+        .button:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
+        .back-link { display: inline-block; margin-top: 2rem; color: var(--muted); font-size: 0.82rem; text-decoration: underline; text-underline-offset: 0.25rem; }
+
+        .footer { padding: 1.1rem 1.25rem; background: #f4f4f4; color: #9d9aa2; }
+        .footer__menu { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.45rem 0.85rem; max-width: 72rem; margin: 0 auto; text-align: center; font-size: 0.95rem; }
+        .footer__menu a { color: #8f8b94; }
+        .footer__separator { color: #beb9c2; }
+        .dock { position: fixed; right: 0; bottom: 0; left: 0; z-index: 30; display: flex; align-items: center; justify-content: center; gap: 0.7rem; min-height: 3rem; padding: 0.75rem 1rem; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+
+        @media (min-width: 42rem) { .fields--two { grid-template-columns: 1fr 1fr; } .options { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 48rem) { .form-layout { grid-template-columns: 0.62fr 1.38fr; align-items: start; } .form-intro { position: sticky; top: 5rem; } }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+    </style>
+</head>
+<body>
+    <header class="topbar" aria-label="Réseaux sociaux">
+        <a href="https://www.facebook.com/profile.php?id=61567891615750">Facebook</a>
+        <b aria-hidden="true">◆</b>
+        <a href="https://www.instagram.com/lecrystal_club/">Instagram</a>
+    </header>
+
+    <section class="page-hero">
+        <a class="page-hero__brand" href="index.html" aria-label="Retour à l'accueil">
+            <img src="assets/logo/NEW_LOGO_CRYSTAL.png" alt="Logo Le Crystal">
+        </a>
+    </section>
+
+    <nav class="site-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <b aria-hidden="true">◆</b>
+        <a href="index.html#horaires">Horaires</a>
+        <b aria-hidden="true">◆</b>
+        <a href="tarifs-reservation.html">Réservations</a>
+    </nav>
+
+    <main>
+        <section class="section">
+            <div class="wrap">
+                <p class="eyebrow">Votre événement</p>
+                <h1>Demande de privatisation</h1>
+                <p class="lead">Parlez-nous de votre projet. Notre équipe reviendra vers vous avec une proposition adaptée à votre événement.</p>
+
+                <div class="form-layout">
+                    <aside class="form-intro">
+                        <p><strong>Le Crystal, à votre image.</strong><br>Soirée privée, anniversaire, événement d'entreprise ou célébration : précisez vos envies, nous vous accompagnons dans l'organisation.</p>
+                    </aside>
+
+                    <form id="private-event-form" action="envoyer-privatisation.php" method="post">
+                        <div class="honeypot" aria-hidden="true">
+                            <label for="website">Ne pas remplir ce champ</label>
+                            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+                        </div>
+                        <fieldset class="form-section">
+                            <legend>Vos coordonnées</legend>
+                            <div class="fields fields--two">
+                                <div class="field">
+                                    <label for="name">Nom et prénom <span class="required" aria-hidden="true">*</span></label>
+                                    <input id="name" name="name" type="text" autocomplete="name" required>
+                                </div>
+                                <div class="field">
+                                    <label for="email">E-mail <span class="required" aria-hidden="true">*</span></label>
+                                    <input id="email" name="email" type="email" autocomplete="email" required>
+                                </div>
+                                <div class="field">
+                                    <label for="phone">Téléphone <span class="required" aria-hidden="true">*</span></label>
+                                    <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+                                </div>
+                                <div class="field">
+                                    <label for="guests">Nombre de personnes <span class="required" aria-hidden="true">*</span></label>
+                                    <input id="guests" name="guests" type="number" min="1" step="1" inputmode="numeric" required>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="form-section">
+                            <legend>Votre projet</legend>
+                            <div class="fields fields--two">
+                                <div class="field">
+                                    <label for="event-date">Date souhaitée</label>
+                                    <input id="event-date" name="event-date" type="date">
+                                </div>
+                                <div class="field">
+                                    <label for="private-type">Type de privatisation <span class="required" aria-hidden="true">*</span></label>
+                                    <select id="private-type" name="private-type" required>
+                                        <option value="" selected disabled>Sélectionnez une formule</option>
+                                        <option>Soirée privée</option>
+                                        <option>Anniversaire</option>
+                                        <option>Enterrement de vie de célibataire</option>
+                                        <option>Événement d'entreprise</option>
+                                        <option>Autre événement</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="form-section">
+                            <legend>Choix des options</legend>
+                            <div class="options">
+                                <label class="option"><input name="options" type="checkbox" value="Soirée dansante">Soirée dansante</label>
+                                <label class="option"><input name="options" type="checkbox" value="Présence d'un DJ">Présence d'un DJ</label>
+                                <label class="option"><input name="options" type="checkbox" value="Open bar">Open bar</label>
+                                <label class="option"><input name="options" type="checkbox" value="Restauration sur mesure">Restauration sur mesure</label>
+                                <label class="option"><input name="options" type="checkbox" value="Karaoké">Karaoké</label>
+                                <label class="option"><input name="options" type="checkbox" value="Animation ou spectacle">Animation ou spectacle</label>
+                                <label class="option"><input name="options" type="checkbox" value="Soirée casino">Soirée casino</label>
+                                <label class="option"><input name="options" type="checkbox" value="Photographe">Photographe</label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="form-section">
+                            <legend>Demande complémentaire</legend>
+                            <div class="field">
+                                <label for="message">Dites-nous en plus sur votre événement</label>
+                                <textarea id="message" name="message" placeholder="Horaires souhaités, ambiance, budget, demandes particulières..."></textarea>
+                            </div>
+                        </fieldset>
+
+                        <label class="consent"><input id="consent" name="consent" type="checkbox" required><span>J'accepte que mes informations soient utilisées pour répondre à ma demande, conformément à la <a href="politique-confidentialite.html">politique de confidentialité</a>. <span class="required" aria-hidden="true">*</span></span></label>
+                        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+                        <p class="form-error" id="form-error" role="alert" aria-live="polite"></p>
+                        <button class="button button--primary" type="submit">Envoyer ma demande</button>
+                    </form>
+                </div>
+                <a class="back-link" href="privatisation.html">← Retour à la privatisation</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <nav class="footer__menu" aria-label="Liens légaux">
+            <span>L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</span>
+            <span class="footer__separator" aria-hidden="true">|</span>
+            <a href="politique-confidentialite.html">Politique de Confidentialité</a>
+            <a href="mentions-legales.html">Mentions Légales</a>
+            <a href="reglement-interieur.html">Règlement Intérieur</a>
+        </nav>
+    </footer>
+
+    <nav class="dock" aria-label="Actions rapides">
+        <a href="tarifs-reservation.html">Tarif</a>
+        <b aria-hidden="true">◆</b>
+        <a href="plan-acces.html">Itinéraire</a>
+        <b aria-hidden="true">◆</b>
+        <a href="privatisation.html">Privatisation</a>
+    </nav>
+
+    <script>
+        (function () {
+            var form = document.getElementById('private-event-form');
+            var error = document.getElementById('form-error');
+            var status = document.getElementById('form-status');
+            var result = new URLSearchParams(window.location.search).get('status');
+
+            if (result === 'success') {
+                status.textContent = 'Votre demande a bien été envoyée. Notre équipe vous répondra dans les meilleurs délais.';
+                status.classList.add('is-visible');
+            } else if (result === 'error') {
+                status.textContent = 'L’envoi a échoué. Veuillez réessayer ou nous contacter directement.';
+                status.classList.add('is-visible', 'form-status--error');
+            } else if (result === 'invalid') {
+                status.textContent = 'Certaines informations sont invalides. Veuillez vérifier votre demande.';
+                status.classList.add('is-visible', 'form-status--error');
+            }
+
+            form.addEventListener('submit', function (event) {
+                error.textContent = '';
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    error.textContent = 'Veuillez renseigner les champs obligatoires avant d\'envoyer votre demande.';
+                    form.reportValidity();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

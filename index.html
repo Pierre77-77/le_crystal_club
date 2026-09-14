@@ -271,6 +271,18 @@
         .head-row h2 { margin-bottom: 0.8rem; }
         .hint { color: var(--muted); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; }
 
+        .rail__controls { display: none; gap: 0.6rem; }
+        .rail__control {
+            display: inline-grid; place-items: center;
+            width: 2.75rem; height: 2.75rem; padding: 0;
+            border: 1px solid var(--gold); border-radius: 50%;
+            background: transparent; color: var(--gold); cursor: pointer;
+            font-size: 1.35rem; line-height: 1;
+            transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+        }
+        .rail__control:hover:not(:disabled) { background: var(--gold); color: #100914; }
+        .rail__control:disabled { cursor: default; opacity: 0.35; }
+
         /* ---------- INSTAGRAM PROGRAMMATION ---------- */
         .insta-card {
             position: relative;
@@ -377,8 +389,8 @@
         .dock b { color: var(--white); font-size: 0.72rem; font-weight: 800; }
 
         @media (min-width: 48rem) {
-            .dock { display: none; }
-            body { padding-bottom: 0; }
+            .rail__controls { display: flex; }
+            .hint { display: none; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -397,7 +409,7 @@
 
     <section class="hero">
         <div class="hero__inner">
-            <img class="hero__logo" src="assets/img/logo-crystal-full.png" alt="Logo Le Crystal">
+            <img class="hero__logo" src="assets/logo/NEW_LOGO_CRYSTAL.png" alt="Logo Le Crystal">
             <p class="hero__tagline"><i></i>Un nouveau club privé sur Meaux<i></i></p>
         </div>
     </section>
@@ -479,8 +491,12 @@
                 <div class="head-row">
                     <h2>Nos dernières soirées</h2>
                     <span class="hint">Faites glisser →</span>
+                    <div class="rail__controls" aria-label="Navigation des soirées">
+                        <button class="rail__control" type="button" data-rail-direction="previous" aria-label="Voir les soirées précédentes">&#8592;</button>
+                        <button class="rail__control" type="button" data-rail-direction="next" aria-label="Voir les soirées suivantes">&#8594;</button>
+                    </div>
                 </div>
-                <div class="rail">
+                <div class="rail" id="soirees-rail">
                     <a class="rail__item" href="soiree.html?date=2025_07_25">
                         <img src="assets/img/Im2.jpg" alt="Soirée du 25 juillet 2025" loading="lazy">
                         <div class="rail__label"><span>25.07.2025</span><strong>Summer Night</strong></div>
@@ -622,6 +638,26 @@
             }, { threshold: 0.15 });
 
             document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
+
+            var rail = document.getElementById('soirees-rail');
+            var railControls = document.querySelectorAll('[data-rail-direction]');
+
+            function updateRailControls() {
+                var maxScrollLeft = rail.scrollWidth - rail.clientWidth;
+                railControls[0].disabled = rail.scrollLeft <= 1;
+                railControls[1].disabled = rail.scrollLeft >= maxScrollLeft - 1;
+            }
+
+            railControls.forEach(function (control) {
+                control.addEventListener('click', function () {
+                    var direction = control.dataset.railDirection === 'next' ? 1 : -1;
+                    rail.scrollBy({ left: direction * rail.clientWidth * 0.8, behavior: 'smooth' });
+                });
+            });
+
+            rail.addEventListener('scroll', updateRailControls, { passive: true });
+            window.addEventListener('resize', updateRailControls);
+            updateRailControls();
         })();
     </script>
 </body>

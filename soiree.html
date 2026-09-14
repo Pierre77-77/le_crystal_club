@@ -133,8 +133,6 @@
         }
 
         @media (min-width: 48rem) {
-            .dock { display: none; }
-            body { padding-bottom: 0; }
         }
     </style>
 </head>
@@ -146,15 +144,15 @@
     </header>
 
     <section class="page-hero">
-        <a class="page-hero__brand" href="test-e.html" aria-label="Retour à l'accueil">
-            <img src="assets/img/logo-crystal-full.png" alt="Logo Le Crystal">
+        <a class="page-hero__brand" href="index.html" aria-label="Retour à l'accueil">
+            <img src="assets/logo/NEW_LOGO_CRYSTAL.png" alt="Logo Le Crystal">
         </a>
     </section>
 
     <nav class="site-nav" aria-label="Navigation principale">
-        <a href="test-e.html">Accueil</a>
+        <a href="index.html">Accueil</a>
         <b aria-hidden="true">◆</b>
-        <a href="test-e.html#horaires">Horaires</a>
+        <a href="index.html#horaires">Horaires</a>
         <b aria-hidden="true">◆</b>
         <a href="tarifs-reservation.html">Réservations</a>
     </nav>
@@ -166,7 +164,7 @@
                 <h1 id="titre">Soirée</h1>
                 <p class="count" id="compteur"></p>
                 <div class="grid" id="grille"></div>
-                <a class="back-link" href="test-e.html">← Retour à l'accueil</a>
+                <a class="back-link" href="index.html">← Retour à l'accueil</a>
             </div>
         </section>
     </main>
@@ -210,7 +208,7 @@
 
             if (!data) {
                 titreEl.textContent = 'Soirée introuvable';
-                grilleEl.innerHTML = '<p class="empty">Cette soirée n\'existe pas ou plus. <a href="test-e.html">Retour à l\'accueil</a>.</p>';
+                grilleEl.innerHTML = '<p class="empty">Cette soirée n\'existe pas ou plus. <a href="index.html">Retour à l\'accueil</a>.</p>';
                 document.title = 'Soirée introuvable | Le Crystal';
                 return;
             }
