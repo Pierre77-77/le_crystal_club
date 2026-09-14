@@ -405,6 +405,7 @@
         }
 
         .footer__menu a { color: #8f8b94; }
+        .footer__menu a + a::before { content: "|"; margin-right: 0.85rem; color: #beb9c2; }
         .footer__menu a:hover { color: var(--purple-deep); }
         .footer__separator { color: #beb9c2; }
 
@@ -469,6 +470,9 @@
                 <p class="cine__kicker">Club privé · Meaux</p>
                 <h1 class="cine__title">LE CRYSTAL</h1>
                 <p class="cine__sub">Un lieu agrandi, repensé, plus chaleureux. Deux espaces, deux univers musicaux, les vendredis et samedis.</p>
+                <div class="cta-row" style="justify-content:center">
+                    <a class="button button--ghost" href="inscription.html">S'inscrire</a>
+                </div>
                 <div class="cta-row" style="justify-content:center">
                     <a class="button button--primary" href="tarifs-reservation.html">Réserver</a>
                     <a class="button button--ghost" href="privatisation.html">Privatiser le lieu</a>
