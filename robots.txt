@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /test-a.html
+Disallow: /test-b.html
+Disallow: /test-c.html
+Disallow: /test-d.html
+Disallow: /soiree.html
+
+Sitemap: https://lecrystalbar.com/sitemap.xml
