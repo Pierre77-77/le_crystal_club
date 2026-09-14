@@ -284,6 +284,39 @@
         .rail__control:hover:not(:disabled) { background: var(--gold); color: #100914; }
         .rail__control:disabled { cursor: default; opacity: 0.35; }
 
+        /* ---------- LES VIDEOS DU CRYSTAL ---------- */
+        .video-rail { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .video-rail::-webkit-scrollbar { display: none; }
+
+        .video-card {
+            position: relative; flex: 0 0 auto; width: min(78vw, 22rem); aspect-ratio: 16 / 10;
+            overflow: hidden; padding: 0; border: 1px solid var(--purple); border-radius: var(--radius);
+            background: #000; color: var(--white); cursor: pointer; scroll-snap-align: start; text-align: left;
+        }
+
+        .video-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .video-card:hover img { transform: scale(1.05); }
+        .video-card__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2, 2, 2, 0.04), rgba(2, 2, 2, 0.8)); }
+        .video-card__play {
+            position: absolute; top: 50%; left: 50%; display: grid; width: 3.4rem; height: 3.4rem;
+            place-items: center; border: 1px solid var(--gold); border-radius: 50%; background: rgba(2, 2, 2, 0.72);
+            color: var(--gold); font-size: 1.1rem; transform: translate(-50%, -50%); transition: background 0.2s ease, color 0.2s ease;
+        }
+        .video-card:hover .video-card__play { background: var(--gold); color: #100914; }
+        .video-card__label { position: absolute; right: 0; bottom: 0; left: 0; padding: 1rem; }
+        .video-card__label span { display: block; color: var(--gold); font-size: 0.66rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; }
+        .video-card__label strong { display: block; font-size: 1rem; font-weight: 900; }
+        .video-card:focus-visible, .video-modal__close:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+        .video-modal { position: fixed; inset: 0; z-index: 110; display: grid; place-items: center; padding: 1.25rem; background: rgba(2, 2, 2, 0.92); }
+        .video-modal[hidden] { display: none; }
+        .video-modal__content { position: relative; width: min(100%, 68rem); }
+        .video-modal video { width: 100%; max-height: 82vh; background: #000; }
+        .video-modal__close {
+            position: absolute; top: -0.1rem; right: -0.1rem; display: grid; width: 2.8rem; height: 2.8rem;
+            place-items: center; border: 1px solid var(--gold); border-radius: 50%; background: #050105; color: var(--gold); cursor: pointer; font-size: 1.45rem;
+        }
+
         /* ---------- INSTAGRAM PROGRAMMATION ---------- */
         .insta-card {
             position: relative;
@@ -427,7 +460,7 @@
         <!-- 1. HERO VIDEO -->
         <section class="cine" aria-label="Présentation">
             <video class="cine__video" autoplay muted loop playsinline preload="metadata" poster="assets/img/DSCF7326.png">
-                <source src="assets/video/Video1.mp4" type="video/mp4">
+                <source src="assets/video/Video-1.mp4" type="video/mp4">
             </video>
             <div class="cine__veil" aria-hidden="true"></div>
             <div class="cine__content">
@@ -542,10 +575,62 @@
             </div>
         </section>
 
-        <!-- 4. INSTAGRAM PROGRAMMATION -->
+        <!-- 4. LES VIDEOS DU CRYSTAL -->
+        <section class="section" id="videos">
+            <div class="wrap reveal">
+                <div class="chapter"><span class="chapter__num">03</span><p class="eyebrow">En images</p></div>
+                <div class="head-row">
+                    <h2>Les vidéos du Crystal</h2>
+                    <span class="hint">Faites glisser →</span>
+                    <div class="rail__controls" aria-label="Navigation des vidéos">
+                        <button class="rail__control" type="button" data-video-direction="previous" aria-label="Voir les vidéos précédentes">&#8592;</button>
+                        <button class="rail__control" type="button" data-video-direction="next" aria-label="Voir les vidéos suivantes">&#8594;</button>
+                    </div>
+                </div>
+                <div class="video-rail" id="videos-rail">
+                    <button class="video-card" type="button" data-video="assets/video/Video-1.mp4" aria-label="Lire la vidéo Crystal en fête">
+                        <img src="assets/img/DSCF7326.png" alt="Ambiance au Crystal" loading="lazy">
+                        <span class="video-card__veil" aria-hidden="true"></span><span class="video-card__play" aria-hidden="true">&#9654;</span>
+                        <span class="video-card__label"><span>Le Crystal</span><strong>Crystal en fête</strong></span>
+                    </button>
+                    <button class="video-card" type="button" data-video="assets/video/Video-3.mp4" aria-label="Lire la vidéo Summer Night">
+                        <img src="assets/img/Im2.jpg" alt="Summer Night au Crystal" loading="lazy">
+                        <span class="video-card__veil" aria-hidden="true"></span><span class="video-card__play" aria-hidden="true">&#9654;</span>
+                        <span class="video-card__label"><span>Été 2025</span><strong>Summer Night</strong></span>
+                    </button>
+                    <button class="video-card" type="button" data-video="assets/video/Video-4.mp4" aria-label="Lire la vidéo Crystal Sessions">
+                        <img src="assets/img/Im5.jpg" alt="Crystal Sessions" loading="lazy">
+                        <span class="video-card__veil" aria-hidden="true"></span><span class="video-card__play" aria-hidden="true">&#9654;</span>
+                        <span class="video-card__label"><span>Live session</span><strong>Crystal Sessions</strong></span>
+                    </button>
+                    <button class="video-card" type="button" data-video="assets/video/Video-5.mp4" aria-label="Lire la vidéo du dancefloor">
+                        <img src="assets/img/Im8.jpg" alt="Dancefloor du Crystal" loading="lazy">
+                        <span class="video-card__veil" aria-hidden="true"></span><span class="video-card__play" aria-hidden="true">&#9654;</span>
+                        <span class="video-card__label"><span>Le dancefloor</span><strong>Une nuit au Crystal</strong></span>
+                    </button>
+                    <button class="video-card" type="button" data-video="assets/video/Video20241206.mp4" aria-label="Lire la vidéo de décembre 2024">
+                        <img src="assets/img/Im10.jpg" alt="Soirée de décembre au Crystal" loading="lazy">
+                        <span class="video-card__veil" aria-hidden="true"></span><span class="video-card__play" aria-hidden="true">&#9654;</span>
+                        <span class="video-card__label"><span>06.12.2024</span><strong>Winter Vibes</strong></span>
+                    </button>
+                    <button class="video-card" type="button" data-video="assets/video/Videomars2025.mp4" aria-label="Lire la vidéo de mars 2025">
+                        <img src="assets/galerie/2025_03_08/DSC07534.jpg" alt="Soirée de mars au Crystal" loading="lazy">
+                        <span class="video-card__veil" aria-hidden="true"></span><span class="video-card__play" aria-hidden="true">&#9654;</span>
+                        <span class="video-card__label"><span>Mars 2025</span><strong>Spring Session</strong></span>
+                    </button>
+                    <button class="video-card" type="button" data-video="assets/video/Videonewyear2025.mp4" aria-label="Lire la vidéo du Nouvel An 2025">
+                        <img src="assets/img/DSCF7148.png" alt="Nouvel An au Crystal" loading="lazy">
+                        <span class="video-card__veil" aria-hidden="true"></span><span class="video-card__play" aria-hidden="true">&#9654;</span>
+                        <span class="video-card__label"><span>Nouvel An 2025</span><strong>New Year Party</strong></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. INSTAGRAM PROGRAMMATION -->
         <section class="section" id="instagram">
             <div class="wrap reveal">
-                <div class="chapter"><span class="chapter__num">03</span><p class="eyebrow">Suivez-nous</p></div>
+                <div class="chapter"><span class="chapter__num">04</span><p class="eyebrow">Suivez-nous</p></div>
                 <h2>Découvrez la programmation de la semaine sur Instagram</h2>
                 <a class="insta-card" href="https://www.instagram.com/lecrystal_club/" target="_blank" rel="noopener">
                     <video autoplay muted loop playsinline preload="metadata" poster="assets/img/DSCF7148.png">
@@ -562,10 +647,10 @@
             </div>
         </section>
 
-        <!-- 5. ESPRIT DU CRYSTAL -->
+        <!-- 6. ESPRIT DU CRYSTAL -->
         <section class="section section--alt" id="esprit">
             <div class="wrap reveal">
-                <div class="chapter"><span class="chapter__num">04</span><p class="eyebrow">Avant de nous rejoindre</p></div>
+                <div class="chapter"><span class="chapter__num">05</span><p class="eyebrow">Avant de nous rejoindre</p></div>
                 <h2>L'esprit du Crystal</h2>
                 <div class="rules">
                     <ul class="rules__list">
@@ -582,10 +667,10 @@
             </div>
         </section>
 
-        <!-- 6. HORAIRES -->
+        <!-- 7. HORAIRES -->
         <section class="section" id="horaires">
             <div class="wrap reveal">
-                <div class="chapter"><span class="chapter__num">05</span><p class="eyebrow">Infos pratiques</p></div>
+                <div class="chapter"><span class="chapter__num">06</span><p class="eyebrow">Infos pratiques</p></div>
                 <h2>Horaires</h2>
                 <article class="card card--hours">
                     <div class="card__body">
@@ -628,6 +713,13 @@
         <a href="privatisation.html">Privatisation</a>
     </nav>
 
+    <div class="video-modal" id="video-modal" hidden aria-modal="true" aria-label="Lecteur vidéo" role="dialog">
+        <div class="video-modal__content">
+            <button class="video-modal__close" id="video-modal-close" type="button" aria-label="Fermer la vidéo">&times;</button>
+            <video id="video-player" controls playsinline></video>
+        </div>
+    </div>
+
     <script src="assets/js/consent.js"></script>
     <script>
         (function () {
@@ -660,6 +752,51 @@
             rail.addEventListener('scroll', updateRailControls, { passive: true });
             window.addEventListener('resize', updateRailControls);
             updateRailControls();
+
+            var videoRail = document.getElementById('videos-rail');
+            var videoControls = document.querySelectorAll('[data-video-direction]');
+            var videoModal = document.getElementById('video-modal');
+            var videoPlayer = document.getElementById('video-player');
+            var videoClose = document.getElementById('video-modal-close');
+            var lastVideoCard;
+
+            function updateVideoControls() {
+                var maxScrollLeft = videoRail.scrollWidth - videoRail.clientWidth;
+                videoControls[0].disabled = videoRail.scrollLeft <= 1;
+                videoControls[1].disabled = videoRail.scrollLeft >= maxScrollLeft - 1;
+            }
+
+            videoControls.forEach(function (control) {
+                control.addEventListener('click', function () {
+                    var direction = control.dataset.videoDirection === 'next' ? 1 : -1;
+                    videoRail.scrollBy({ left: direction * videoRail.clientWidth * 0.8, behavior: 'smooth' });
+                });
+            });
+
+            function closeVideo() {
+                videoPlayer.pause();
+                videoPlayer.removeAttribute('src');
+                videoPlayer.load();
+                videoModal.hidden = true;
+                if (lastVideoCard) { lastVideoCard.focus(); }
+            }
+
+            document.querySelectorAll('[data-video]').forEach(function (card) {
+                card.addEventListener('click', function () {
+                    lastVideoCard = card;
+                    videoPlayer.src = card.dataset.video;
+                    videoModal.hidden = false;
+                    videoClose.focus();
+                    videoPlayer.play().catch(function () { });
+                });
+            });
+
+            videoClose.addEventListener('click', closeVideo);
+            videoModal.addEventListener('click', function (event) { if (event.target === videoModal) { closeVideo(); } });
+            document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && !videoModal.hidden) { closeVideo(); } });
+            videoRail.addEventListener('scroll', updateVideoControls, { passive: true });
+            window.addEventListener('resize', updateVideoControls);
+            updateVideoControls();
         })();
     </script>
 </body>
