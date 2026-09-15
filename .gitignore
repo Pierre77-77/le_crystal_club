@@ -6,5 +6,5 @@ $RECYCLE.BIN/
 *.tmp
 *.bak
 .rate-limit/
-security/smtp_secret.php
-logs/*.log
+security/lecrystalbar/smtp_secret.php
+logs/lecrystalbar/*.log

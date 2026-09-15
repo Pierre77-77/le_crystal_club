@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-require_once __DIR__ . '/../config/mail_config.php';
-require_once __DIR__ . '/../config/smtp_helper.php';
+require_once __DIR__ . '/../config/lecrystalbar/mail_config.php';
+require_once __DIR__ . '/../config/lecrystalbar/smtp_helper.php';
 
 const RECIPIENT = 'contact@lecrystalbar.com';
 const FORM_URL = 'formulaire.html';
-const LOG_FILE = __DIR__ . '/../logs/privatisation.log';
+const LOG_FILE = __DIR__ . '/../logs/lecrystalbar/privatisation.log';
 const RATE_LIMIT_DIR = __DIR__ . '/.rate-limit';
 const RATE_LIMIT_MIN_INTERVAL = 30; // secondes minimum entre deux envois
 const RATE_LIMIT_MAX_PER_WINDOW = 5; // envois max par fenêtre

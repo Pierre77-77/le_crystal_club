@@ -1,8 +1,8 @@
 <?php
-// config/mail_config.php
+// config/lecrystalbar/mail_config.php
 
-// Chargement sécurisé du mot de passe (fichier hors de portée du web, voir security/.htaccess)
-require_once __DIR__ . '/../security/smtp_secret.php';
+// Chargement sécurisé du mot de passe (fichier hors de portée du web, voir security/lecrystalbar/.htaccess)
+require_once __DIR__ . '/../../security/lecrystalbar/smtp_secret.php';
 
 // Identifiants SMTP pour l'envoi de mails via le serveur OVH
 $SMTP_CONF = [

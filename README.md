@@ -29,9 +29,21 @@ Le dossier `docs/` est configuré comme racine GitHub Pages (Réglages du dépô
   - `assets/js/galeries.js` : données des galeries photo par soirée.
   - `envoyer-privatisation.php` : traitement du formulaire de demande de privatisation.
 - `config/` et `security/` : **hors de la racine web**, contiennent les identifiants SMTP et la logique d'envoi de mail. Ne doivent jamais être placés dans le dossier pointé par le domaine sur l'hébergement.
+  - Ces dossiers sont mutualisés avec d'autres sites sur le même compte OVH : les fichiers propres au Crystal Bar vivent dans les sous-dossiers `config/lecrystalbar/`, `security/lecrystalbar/` et `logs/lecrystalbar/`.
 
 ## Déploiement (OVH)
 
-1. Uploader le contenu de `docs/` dans le dossier configuré comme racine web du domaine (ex. `www/`).
-2. Uploader `config/` et `security/` **au même niveau que `www/`, pas dedans** (ex. directement dans le dossier FTP racine du compte hébergement), afin qu'ils soient physiquement inaccessibles depuis le web, quelle que soit la configuration Apache.
-3. Éditer `security/smtp_secret.php` sur le serveur avec le vrai mot de passe SMTP (ce fichier n'est jamais présent dans Git).
+Structure FTP cible sur le compte d'hébergement mutualisé (racine du compte) :
+
+```
+/ (racine FTP)
+├── lecrystalbar/        ← contenu de docs/ (dossier racine du domaine lecrystalbar.com)
+├── config/lecrystalbar/ ← contenu de config/lecrystalbar/
+├── security/lecrystalbar/ ← contenu de security/lecrystalbar/
+├── logs/lecrystalbar/   ← contenu de logs/lecrystalbar/
+└── ... (autres dossiers d'autres sites : events/, www/, redirection_events/...)
+```
+
+1. Vider le dossier `lecrystalbar/` existant (actuellement une installation WordPress) après sauvegarde, puis uploader le contenu de `docs/` à la place.
+2. Uploader `config/lecrystalbar/`, `security/lecrystalbar/` et `logs/lecrystalbar/` dans les dossiers partagés `config/`, `security/` et `logs/` déjà présents à la racine du compte (sans toucher aux sous-dossiers des autres sites).
+3. Éditer `security/lecrystalbar/smtp_secret.php` sur le serveur avec le vrai mot de passe SMTP (ce fichier n'est jamais présent dans Git).
