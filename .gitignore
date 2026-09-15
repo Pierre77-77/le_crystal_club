@@ -5,3 +5,4 @@ $RECYCLE.BIN/
 .DS_Store
 *.tmp
 *.bak
+.rate-limit/

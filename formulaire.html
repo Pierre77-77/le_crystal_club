@@ -263,6 +263,9 @@
             } else if (result === 'invalid') {
                 status.textContent = 'Certaines informations sont invalides. Veuillez vérifier votre demande.';
                 status.classList.add('is-visible', 'form-status--error');
+            } else if (result === 'too_many') {
+                status.textContent = 'Trop de demandes envoyées récemment. Merci de réessayer dans quelques minutes.';
+                status.classList.add('is-visible', 'form-status--error');
             }
 
             form.addEventListener('submit', function (event) {

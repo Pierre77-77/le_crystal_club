@@ -1,0 +1,12 @@
+# Désactive le listing des répertoires
+Options -Indexes
+
+# Bloque l'accès au dossier .git si copié par erreur
+RedirectMatch 404 /\.git
+
+# Bloque l'accès au stockage interne du rate limiting
+RedirectMatch 404 /\.rate-limit
+
+<IfModule mod_headers.c>
+    Header always append X-Content-Type-Options nosniff
+</IfModule>
