@@ -6,3 +6,4 @@ $RECYCLE.BIN/
 *.tmp
 *.bak
 .rate-limit/
+security/smtp_secret.php

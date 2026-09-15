@@ -1,6 +1,9 @@
 <?php
 declare(strict_types=1);
 
+require_once __DIR__ . '/../config/mail_config.php';
+require_once __DIR__ . '/../config/smtp_helper.php';
+
 const RECIPIENT = 'contact@lecrystalbar.com';
 const FORM_URL = 'formulaire.html';
 const RATE_LIMIT_DIR = __DIR__ . '/.rate-limit';
@@ -126,14 +129,8 @@ $body = implode("\n", [
 ]);
 
 $subject = 'Demande de privatisation - ' . $name;
-$headers = [
-    'From: Le Crystal <contact@lecrystalbar.com>',
-    'Reply-To: ' . $email,
-    'MIME-Version: 1.0',
-    'Content-Type: text/plain; charset=UTF-8',
-];
 
-if (!mail(RECIPIENT, $subject, $body, implode("\r\n", $headers))) {
+if (!send_mail_via_smtp(RECIPIENT, $subject, $body, $SMTP_CONF, $email)) {
     redirectToForm('error');
 }
 
