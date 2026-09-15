@@ -6,6 +6,7 @@ require_once __DIR__ . '/../config/smtp_helper.php';
 
 const RECIPIENT = 'contact@lecrystalbar.com';
 const FORM_URL = 'formulaire.html';
+const LOG_FILE = __DIR__ . '/../logs/privatisation.log';
 const RATE_LIMIT_DIR = __DIR__ . '/.rate-limit';
 const RATE_LIMIT_MIN_INTERVAL = 30; // secondes minimum entre deux envois
 const RATE_LIMIT_MAX_PER_WINDOW = 5; // envois max par fenêtre
@@ -15,6 +16,28 @@ function redirectToForm(string $status): never
 {
     header('Location: ' . FORM_URL . '?status=' . rawurlencode($status), true, 303);
     exit;
+}
+
+function logPrivatisationRequest(string $status, string $name, string $email, string $phone, int|false $guests, string $eventDate, string $privateType, array $options, string $message): void
+{
+    $logDir = dirname(LOG_FILE);
+    if (!is_dir($logDir)) {
+        mkdir($logDir, 0700, true);
+    }
+    $line = implode(' | ', [
+        date('Y-m-d H:i:s'),
+        'status=' . $status,
+        'ip=' . ($_SERVER['REMOTE_ADDR'] ?? ''),
+        'nom=' . $name,
+        'email=' . $email,
+        'tel=' . $phone,
+        'personnes=' . ($guests !== false ? (string) $guests : ''),
+        'date=' . $eventDate,
+        'type=' . $privateType,
+        'options=' . implode(', ', $options),
+        'message=' . str_replace(["\r", "\n"], ' ', $message),
+    ]);
+    file_put_contents(LOG_FILE, $line . PHP_EOL, FILE_APPEND | LOCK_EX);
 }
 
 function checkRateLimit(string $ip): bool
@@ -130,7 +153,10 @@ $body = implode("\n", [
 
 $subject = 'Demande de privatisation - ' . $name;
 
-if (!send_mail_via_smtp(RECIPIENT, $subject, $body, $SMTP_CONF, $email)) {
+$sent = send_mail_via_smtp(RECIPIENT, $subject, $body, $SMTP_CONF, $email);
+logPrivatisationRequest($sent ? 'success' : 'error', $name, $email, $phone, $guests, $eventDate, $privateType, $options, $message);
+
+if (!$sent) {
     redirectToForm('error');
 }
 

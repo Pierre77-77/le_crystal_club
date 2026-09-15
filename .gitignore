@@ -7,3 +7,4 @@ $RECYCLE.BIN/
 *.bak
 .rate-limit/
 security/smtp_secret.php
+logs/*.log
