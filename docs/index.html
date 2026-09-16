@@ -343,7 +343,7 @@
 
         .video-modal { position: fixed; inset: 0; z-index: 110; display: grid; place-items: center; padding: 1.25rem; background: rgba(2, 2, 2, 0.92); }
         .video-modal[hidden] { display: none; }
-        .video-modal__content { position: relative; width: min(100%, 68rem); }
+        .video-modal__content { position: relative; width: min(100%, 68rem); touch-action: pan-y; }
         .video-modal video { width: 100%; max-height: 82vh; background: #000; }
         .video-modal__close {
             position: absolute; top: -0.1rem; right: -0.1rem; display: grid; width: 2.8rem; height: 2.8rem;
@@ -396,6 +396,7 @@
         .rules__list li:last-child { border-bottom: 0; }
         .rules__list li::before { content: "◆"; position: absolute; left: -1.2rem; top: 0.6rem; color: var(--purple); font-size: 0.7rem; }
         .rules__list strong { color: var(--white); }
+        .rules__link a { color: var(--gold); text-decoration: underline; text-underline-offset: 0.25rem; }
 
         .spirit {
             padding: 1.5rem;
@@ -425,8 +426,9 @@
 
         .hours-row--detailed { display: block; }
         .hours-row--detailed__day { display: block; margin-bottom: 0.4rem; font-weight: 800; color: var(--white); }
-        .hours-sub { display: flex; justify-content: space-between; gap: 1rem; padding: 0.15rem 0; }
-        .hours-sub strong { color: var(--gold); text-align: right; }
+        .hours-sub { display: grid; grid-template-columns: minmax(0, 1fr) max-content; align-items: start; gap: 1rem; padding: 0.15rem 0; }
+        .hours-sub span { min-width: 0; }
+        .hours-sub strong { color: var(--gold); text-align: right; white-space: nowrap; }
 
         /* ---------- FOOTER ---------- */
         .footer { padding: 1.1rem 1.25rem; background: #f4f4f4; color: #9d9aa2; }
@@ -439,7 +441,10 @@
 
         .footer__menu a { color: #8f8b94; }
         .footer__menu a + a::before { content: "|"; margin-right: 0.85rem; color: #beb9c2; }
-        .footer__socials { display: flex; flex-basis: 100%; justify-content: center; gap: 1rem; }
+        .footer__warning, .footer__links, .footer__socials { flex: 0 0 100%; }
+        .footer__links, .footer__socials { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.45rem; }
+        .footer__links span { color: #beb9c2; }
+        .footer__links { flex-wrap: nowrap; }
         .footer__socials a { display: inline-flex; align-items: center; gap: 0.4rem; }
         .footer__socials a + a::before { content: none; }
         .footer__socials img { width: 1rem; height: 1rem; }
@@ -463,6 +468,15 @@
         @media (min-width: 48rem) {
             .rail__controls { display: flex; }
             .hint { display: none; }
+        }
+
+        @media (max-width: 30rem) {
+            .card__body { padding: 1.25rem; }
+            .hours-sub { gap: 0.75rem; }
+            .hours-sub span { font-size: 0.86rem; line-height: 1.35; }
+            .footer__menu { font-size: 0.74rem; }
+            .footer__links { gap: 0.25rem; }
+            .footer__warning { white-space: nowrap; font-size: clamp(0.43rem, 2.2vw, 0.74rem); }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -545,7 +559,7 @@
                         <div class="tile__body">
                             <h3>Extérieur</h3>
                             <span class="tile__time">23h45 → 03h00</span>
-                            <p>House. De mars à octobre.</p>
+                            <p>House (d'avril à septembre)</p>
                         </div>
                     </article>
                     <article class="tile">
@@ -561,10 +575,30 @@
             </div>
         </section>
 
-        <!-- 3. NOS DERNIERES SOIREES -->
+        <!-- 3. INSTAGRAM PROGRAMMATION -->
+        <section class="section" id="instagram">
+            <div class="wrap reveal">
+                <div class="chapter"><span class="chapter__num">02</span><p class="eyebrow">Suivez-nous</p></div>
+                <h2>Découvrez la programmation de la semaine sur Instagram</h2>
+                <a class="insta-card" href="https://www.instagram.com/lecrystal_club/" target="_blank" rel="noopener">
+                    <video autoplay muted loop playsinline preload="metadata" poster="assets/img/crystal-entree-ambiance.webp">
+                        <source src="assets/video/Videonewyear2025.mp4" type="video/mp4">
+                    </video>
+                    <span class="badge">En live</span>
+                    <div class="card__veil" aria-hidden="true"></div>
+                    <div class="card__body">
+                        <h3>@lecrystal_club</h3>
+                        <p>Line-up, événements et coulisses de la semaine : tout se passe d'abord sur Instagram.</p>
+                        <span class="button button--primary" style="display:inline-flex">Suivre le compte</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 4. NOS DERNIERES SOIREES -->
         <section class="section section--alt">
             <div class="wrap reveal">
-                <div class="chapter"><span class="chapter__num">02</span><p class="eyebrow">Rétrospective</p></div>
+                <div class="chapter"><span class="chapter__num">03</span><p class="eyebrow">Les nuits du Crystal</p></div>
                 <div class="head-row">
                     <h2>Nos dernières soirées</h2>
                     <span class="hint">Faites glisser →</span>
@@ -574,6 +608,10 @@
                     </div>
                 </div>
                 <div class="rail" id="soirees-rail">
+                    <a class="rail__item" href="soiree.html?date=2026_08_29">
+                        <img src="assets/galerie/2026_08_29/DSCF1098.webp" alt="Soirée du 29 août 2026" loading="lazy">
+                        <div class="rail__label"><span>29.08.2026</span><strong>Soirée du 29 août</strong></div>
+                    </a>
                     <a class="rail__item" href="soiree.html?date=2025_07_25">
                         <img src="assets/img/crystal-copines-groupe.webp" alt="Soirée du 25 juillet 2025" loading="lazy">
                         <div class="rail__label"><span>25.07.2025</span><strong>Summer Night</strong></div>
@@ -618,10 +656,10 @@
             </div>
         </section>
 
-        <!-- 4. LES VIDEOS DU CRYSTAL -->
+        <!-- 5. LES VIDEOS DU CRYSTAL -->
         <section class="section" id="videos">
             <div class="wrap reveal">
-                <div class="chapter"><span class="chapter__num">03</span><p class="eyebrow">En images</p></div>
+                <div class="chapter"><span class="chapter__num">04</span><p class="eyebrow">Le Crystal en vidéo</p></div>
                 <div class="head-row">
                     <h2>Les vidéos du Crystal</h2>
                     <span class="hint">Faites glisser →</span>
@@ -670,42 +708,24 @@
             </div>
         </section>
 
-        <!-- 5. INSTAGRAM PROGRAMMATION -->
-        <section class="section" id="instagram">
-            <div class="wrap reveal">
-                <div class="chapter"><span class="chapter__num">04</span><p class="eyebrow">Suivez-nous</p></div>
-                <h2>Découvrez la programmation de la semaine sur Instagram</h2>
-                <a class="insta-card" href="https://www.instagram.com/lecrystal_club/" target="_blank" rel="noopener">
-                    <video autoplay muted loop playsinline preload="metadata" poster="assets/img/crystal-entree-ambiance.webp">
-                        <source src="assets/video/Videonewyear2025.mp4" type="video/mp4">
-                    </video>
-                    <span class="badge">En live</span>
-                    <div class="card__veil" aria-hidden="true"></div>
-                    <div class="card__body">
-                        <h3>@lecrystal_club</h3>
-                        <p>Line-up, événements et coulisses de la semaine : tout se passe d'abord sur Instagram.</p>
-                        <span class="button button--primary" style="display:inline-flex">Suivre le compte</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
         <!-- 6. ESPRIT DU CRYSTAL -->
         <section class="section section--alt" id="esprit">
             <div class="wrap reveal">
                 <div class="chapter"><span class="chapter__num">05</span><p class="eyebrow">Avant de nous rejoindre</p></div>
                 <h2>L'esprit du Crystal</h2>
                 <div class="rules">
+                    <div class="spirit">
+                        <p>Le Crystal est un lieu de fête, de musique et de partage.</p>
+                        <p>L'élégance et le respect sont de rigueur.</p>
+                        <p>On compte sur chacun pour préserver cette ambiance.</p>
+                    </div>
                     <ul class="rules__list">
                         <li>L'accès reste soumis aux <strong>règles de l'établissement</strong> et à sa capacité d'accueil.</li>
                         <li>La direction se réserve le <strong>droit d'admission</strong>, conformément à la réglementation en vigueur.</li>
                         <li><strong>Tenue correcte exigée.</strong></li>
                         <li>Tout comportement déplacé, état d'ivresse ou usage de drogue entraînera un <strong>refus d'accès ou une exclusion</strong> de l'établissement.</li>
+                        <li class="rules__link"><a href="reglement-interieur.html">Lire le règlement intérieur</a></li>
                     </ul>
-                    <div class="spirit">
-                        <p>Le Crystal est un lieu de fête, de musique et de partage. On compte sur chacun pour préserver cette ambiance.</p>
-                        <a href="reglement-interieur.html">Lire le règlement intérieur</a>
-                    </div>
                 </div>
             </div>
         </section>
@@ -721,12 +741,12 @@
                         <div class="hours-row hours-row--open hours-row--detailed">
                             <span class="hours-row--detailed__day">Vendredi</span>
                             <div class="hours-sub"><span>Intérieur</span><strong>23h30 → 04h00</strong></div>
-                            <div class="hours-sub"><span>Extérieur</span><strong>23h45 → 03h00</strong></div>
+                            <div class="hours-sub"><span>Extérieur (d'avril à septembre)</span><strong>23h45 → 03h00</strong></div>
                         </div>
                         <div class="hours-row hours-row--open hours-row--detailed">
                             <span class="hours-row--detailed__day">Samedi</span>
                             <div class="hours-sub"><span>Intérieur</span><strong>23h30 → 04h00</strong></div>
-                            <div class="hours-sub"><span>Extérieur</span><strong>23h45 → 03h00</strong></div>
+                            <div class="hours-sub"><span>Extérieur (d'avril à septembre)</span><strong>23h45 → 03h00</strong></div>
                         </div>
                         <div class="hours-row"><span>Dimanche</span><strong>Fermé</strong></div>
                     </div>
@@ -740,11 +760,9 @@
 
     <footer class="footer">
         <nav class="footer__menu" aria-label="Liens légaux">
-            <span>L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</span>
-            <span class="footer__separator" aria-hidden="true">|</span>
-            <a href="politique-confidentialite.html">Politique de Confidentialité</a>
-            <a href="mentions-legales.html">Mentions Légales</a>
-            <a href="reglement-interieur.html">Règlement Intérieur</a>
+            <span class="footer__warning">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</span>
+            <span class="footer__links"><span aria-hidden="true">|</span><a href="contact.html">Contact</a><span aria-hidden="true">|</span><a href="politique-confidentialite.html">Politique de Confidentialité</a><span aria-hidden="true">|</span></span>
+            <span class="footer__links"><span aria-hidden="true">|</span><a href="mentions-legales.html">Mentions Légales</a><span aria-hidden="true">|</span><a href="reglement-interieur.html">Règlement Intérieur</a><span aria-hidden="true">|</span></span>
             <span class="footer__socials">
                 <a href="https://www.facebook.com/profile.php?id=61567891615750" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/facebook/b65ad9" alt="">Facebook</a>
                 <a href="https://www.instagram.com/lecrystal_club/" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/instagram/b65ad9" alt="">Instagram</a>
@@ -805,6 +823,10 @@
             var videoModal = document.getElementById('video-modal');
             var videoPlayer = document.getElementById('video-player');
             var videoClose = document.getElementById('video-modal-close');
+            var videoCards = Array.prototype.slice.call(document.querySelectorAll('[data-video]'));
+            var activeVideoIndex = -1;
+            var swipeStartX = 0;
+            var swipeStartY = 0;
             var lastVideoCard;
 
             function updateVideoControls() {
@@ -828,19 +850,49 @@
                 if (lastVideoCard) { lastVideoCard.focus(); }
             }
 
-            document.querySelectorAll('[data-video]').forEach(function (card) {
+            function openVideo(index) {
+                var card = videoCards[index];
+                if (!card) { return; }
+                activeVideoIndex = index;
+                lastVideoCard = card;
+                videoPlayer.src = card.dataset.video;
+                videoModal.hidden = false;
+                videoClose.focus();
+                videoPlayer.play().catch(function () { });
+            }
+
+            function showAdjacentVideo(direction) {
+                if (activeVideoIndex < 0 || videoCards.length < 2) { return; }
+                var nextIndex = (activeVideoIndex + direction + videoCards.length) % videoCards.length;
+                openVideo(nextIndex);
+            }
+
+            videoCards.forEach(function (card, index) {
                 card.addEventListener('click', function () {
-                    lastVideoCard = card;
-                    videoPlayer.src = card.dataset.video;
-                    videoModal.hidden = false;
-                    videoClose.focus();
-                    videoPlayer.play().catch(function () { });
+                    openVideo(index);
                 });
             });
 
             videoClose.addEventListener('click', closeVideo);
             videoModal.addEventListener('click', function (event) { if (event.target === videoModal) { closeVideo(); } });
-            document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && !videoModal.hidden) { closeVideo(); } });
+            videoModal.addEventListener('touchstart', function (event) {
+                if (videoModal.hidden || event.touches.length !== 1) { return; }
+                swipeStartX = event.touches[0].clientX;
+                swipeStartY = event.touches[0].clientY;
+            }, { passive: true });
+            videoModal.addEventListener('touchend', function (event) {
+                if (videoModal.hidden || !event.changedTouches.length) { return; }
+                var deltaX = event.changedTouches[0].clientX - swipeStartX;
+                var deltaY = event.changedTouches[0].clientY - swipeStartY;
+                if (Math.abs(deltaX) < 55 || Math.abs(deltaX) < Math.abs(deltaY) * 1.4) { return; }
+                showAdjacentVideo(deltaX < 0 ? 1 : -1);
+            }, { passive: true });
+            document.addEventListener('keydown', function (event) {
+                if (videoModal.hidden) { return; }
+                if (event.key === 'Escape') { closeVideo(); }
+                if (event.key === 'ArrowLeft') { showAdjacentVideo(-1); }
+                if (event.key === 'ArrowRight') { showAdjacentVideo(1); }
+            });
             videoRail.addEventListener('scroll', updateVideoControls, { passive: true });
             window.addEventListener('resize', updateVideoControls);
             updateVideoControls();

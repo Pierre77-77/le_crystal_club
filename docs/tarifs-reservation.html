@@ -157,7 +157,10 @@
         }
         .footer__menu a { color: #8f8b94; }
         .footer__menu a + a::before { content: "|"; margin-right: 0.85rem; color: #beb9c2; }
-        .footer__socials { display: flex; flex-basis: 100%; justify-content: center; gap: 1rem; }
+        .footer__warning, .footer__links, .footer__socials { flex: 0 0 100%; }
+        .footer__links, .footer__socials { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.45rem; }
+        .footer__links span { color: #beb9c2; }
+        .footer__links { flex-wrap: nowrap; }
         .footer__socials a { display: inline-flex; align-items: center; gap: 0.4rem; }
         .footer__socials a + a::before { content: none; }
         .footer__socials img { width: 1rem; height: 1rem; }
@@ -174,6 +177,12 @@
 
         @media (min-width: 48rem) {
             .booking { grid-template-columns: 1.4fr 1fr; }
+        }
+
+        @media (max-width: 30rem) {
+            .footer__menu { font-size: 0.74rem; }
+            .footer__links { gap: 0.25rem; }
+            .footer__warning { white-space: nowrap; font-size: clamp(0.43rem, 2.2vw, 0.74rem); }
         }
     </style>
 </head>
@@ -247,11 +256,9 @@
 
     <footer class="footer">
         <nav class="footer__menu" aria-label="Liens légaux">
-            <span>L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</span>
-            <span class="footer__separator" aria-hidden="true">|</span>
-            <a href="politique-confidentialite.html">Politique de Confidentialité</a>
-            <a href="mentions-legales.html">Mentions Légales</a>
-            <a href="reglement-interieur.html">Règlement Intérieur</a>
+            <span class="footer__warning">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</span>
+            <span class="footer__links"><span aria-hidden="true">|</span><a href="contact.html">Contact</a><span aria-hidden="true">|</span><a href="politique-confidentialite.html">Politique de Confidentialité</a><span aria-hidden="true">|</span></span>
+            <span class="footer__links"><span aria-hidden="true">|</span><a href="mentions-legales.html">Mentions Légales</a><span aria-hidden="true">|</span><a href="reglement-interieur.html">Règlement Intérieur</a><span aria-hidden="true">|</span></span>
             <span class="footer__socials">
                 <a href="https://www.facebook.com/profile.php?id=61567891615750" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/facebook/b65ad9" alt="">Facebook</a>
                 <a href="https://www.instagram.com/lecrystal_club/" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/instagram/b65ad9" alt="">Instagram</a>

@@ -376,6 +376,21 @@ address {
     font-weight: 400;
 }
 
+.footer__warning,
+.footer__links,
+.footer__socials {
+    flex: 0 0 100%;
+}
+
+.footer__links,
+.footer__socials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.45rem;
+}
+
 .footer__menu a {
     color: #8f8b94;
 }
@@ -387,6 +402,25 @@ address {
 
 .footer__separator {
     color: #beb9c2;
+}
+
+.footer__links span {
+    color: #beb9c2;
+}
+
+.footer__links {
+    flex-wrap: nowrap;
+}
+
+.footer__socials img {
+    width: 1rem;
+    height: 1rem;
+}
+
+@media (max-width: 30rem) {
+    .footer__menu { font-size: 0.74rem; }
+    .footer__links { gap: 0.25rem; }
+    .footer__warning { white-space: nowrap; font-size: clamp(0.43rem, 2.2vw, 0.74rem); }
 }
 
 @media (min-width: 42rem) {
