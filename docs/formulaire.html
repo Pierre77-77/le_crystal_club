@@ -91,6 +91,12 @@
         .button--primary { background: var(--gold); color: #100914; }
         .button:hover { transform: translateY(-2px); box-shadow: 0 0.7rem 1.6rem rgba(230, 202, 98, 0.2); }
         .button:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
+        .success-modal { position: fixed; inset: 0; z-index: 200; display: none; place-items: center; padding: 1.25rem; background: rgba(2, 2, 2, 0.78); }
+        .success-modal.is-visible { display: grid; }
+        .success-modal__dialog { width: min(100%, 32rem); padding: clamp(1.75rem, 6vw, 2.75rem); border: 1px solid var(--gold); border-radius: var(--radius); background: var(--panel); box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.6); text-align: center; }
+        .success-modal__eyebrow { margin: 0 0 0.7rem; color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; }
+        .success-modal h2 { margin: 0; font-size: clamp(1.7rem, 6vw, 2.4rem); line-height: 1.1; }
+        .success-modal__text { margin: 1rem 0 1.75rem; color: var(--muted); }
         .back-link { display: inline-block; margin-top: 2rem; color: var(--muted); font-size: 0.82rem; text-decoration: underline; text-underline-offset: 0.25rem; }
 
         .footer { padding: 1.1rem 1.25rem; background: #f4f4f4; color: #9d9aa2; }
@@ -114,6 +120,14 @@
     </style>
 </head>
 <body>
+    <div class="success-modal" id="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-modal-title" aria-describedby="success-modal-text" hidden>
+        <div class="success-modal__dialog">
+            <p class="success-modal__eyebrow">Demande envoyée</p>
+            <h2 id="success-modal-title">Merci pour votre demande</h2>
+            <p class="success-modal__text" id="success-modal-text">Votre demande de privatisation a bien été envoyée. Notre équipe vous répondra dans les meilleurs délais.</p>
+            <a class="button button--primary" href="index.html">Retour à l'accueil</a>
+        </div>
+    </div>
     <header class="topbar" aria-label="Réseaux sociaux">
         <a href="https://www.facebook.com/profile.php?id=61567891615750">Facebook</a>
         <b aria-hidden="true">◆</b>
@@ -199,14 +213,14 @@
                         <fieldset class="form-section">
                             <legend>Choix des options</legend>
                             <div class="options">
-                                <label class="option"><input name="options" type="checkbox" value="Soirée dansante">Soirée dansante</label>
-                                <label class="option"><input name="options" type="checkbox" value="Présence d'un DJ">Présence d'un DJ</label>
-                                <label class="option"><input name="options" type="checkbox" value="Open bar">Open bar</label>
-                                <label class="option"><input name="options" type="checkbox" value="Restauration sur mesure">Restauration sur mesure</label>
-                                <label class="option"><input name="options" type="checkbox" value="Karaoké">Karaoké</label>
-                                <label class="option"><input name="options" type="checkbox" value="Animation ou spectacle">Animation ou spectacle</label>
-                                <label class="option"><input name="options" type="checkbox" value="Soirée casino">Soirée casino</label>
-                                <label class="option"><input name="options" type="checkbox" value="Photographe">Photographe</label>
+                                <label class="option"><input name="options[]" type="checkbox" value="Soirée dansante">Soirée dansante</label>
+                                <label class="option"><input name="options[]" type="checkbox" value="Présence d'un DJ">Présence d'un DJ</label>
+                                <label class="option"><input name="options[]" type="checkbox" value="Open bar">Open bar</label>
+                                <label class="option"><input name="options[]" type="checkbox" value="Restauration sur mesure">Restauration sur mesure</label>
+                                <label class="option"><input name="options[]" type="checkbox" value="Karaoké">Karaoké</label>
+                                <label class="option"><input name="options[]" type="checkbox" value="Animation ou spectacle">Animation ou spectacle</label>
+                                <label class="option"><input name="options[]" type="checkbox" value="Soirée casino">Soirée casino</label>
+                                <label class="option"><input name="options[]" type="checkbox" value="Photographe">Photographe</label>
                             </div>
                         </fieldset>
 
@@ -254,11 +268,12 @@
             var form = document.getElementById('private-event-form');
             var error = document.getElementById('form-error');
             var status = document.getElementById('form-status');
+            var successModal = document.getElementById('success-modal');
             var result = new URLSearchParams(window.location.search).get('status');
 
             if (result === 'success') {
-                status.textContent = 'Votre demande a bien été envoyée. Notre équipe vous répondra dans les meilleurs délais.';
-                status.classList.add('is-visible');
+                successModal.hidden = false;
+                successModal.classList.add('is-visible');
             } else if (result === 'error') {
                 status.textContent = 'L’envoi a échoué. Veuillez réessayer ou nous contacter directement.';
                 status.classList.add('is-visible', 'form-status--error');

@@ -136,7 +136,7 @@ if (strlen($message) > 4000) {
     redirectToForm('invalid');
 }
 
-$body = implode("\n", [
+$body = implode("\r\n", [
     'Nouvelle demande de privatisation',
     '',
     'Nom et prénom : ' . $name,

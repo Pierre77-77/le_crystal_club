@@ -1,12 +1,38 @@
 # Désactive le listing des répertoires
 Options -Indexes
 
+# Force HTTPS et la version sans www du domaine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{THE_REQUEST} \s/+index\.html(?:[?\s]) [NC]
+    RewriteRule ^index\.html$ https://lecrystalbar.com/ [R=301,L]
+    RewriteCond %{HTTPS} !=on [OR]
+    RewriteCond %{HTTP_HOST} !^lecrystalbar\.com$ [NC]
+    RewriteRule ^ https://lecrystalbar.com%{REQUEST_URI} [R=301,L]
+</IfModule>
+
 # Bloque l'accès au dossier .git si copié par erreur
 RedirectMatch 404 /\.git
 
 # Bloque l'accès au stockage interne du rate limiting
 RedirectMatch 404 /\.rate-limit
 
+# Bloque les fichiers internes qui ne doivent jamais être publics
+<FilesMatch "(?i)^(?:\.env|composer\.(?:json|lock)|.*\.(?:bak|conf|dist|ini|log|sql|swp))$">
+    Require all denied
+</FilesMatch>
+
+# Redirections permanentes des anciennes URL WordPress
+Redirect 301 /horaires/ /index.html#horaires
+Redirect 301 /privatisation/ /privatisation.html
+Redirect 301 /plan-dacces/ /plan-acces.html
+Redirect 301 /contact/ /contact.html
+Redirect 301 /politique-de-confidentialite-2/ /politique-confidentialite.html
+Redirect 301 /rgpd/ /mentions-legales.html
+Redirect 301 /reglement-interieur/ /reglement-interieur.html
+
 <IfModule mod_headers.c>
     Header always append X-Content-Type-Options nosniff
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set X-Frame-Options "SAMEORIGIN"
 </IfModule>
