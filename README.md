@@ -23,6 +23,7 @@ Le dossier `docs/` est configuré comme racine GitHub Pages (Réglages du dépô
 
 - `docs/` : **racine web publique**, tout ce qui doit être accessible aux internautes (utilisée aussi comme racine GitHub Pages).
   - `index.html` et autres pages `.html` : contenu du site.
+  - `achat_place.html` : achat de places via l'iframe Apex Timing, avec le même design que `inscription.html`.
   - `assets/css/styles.css` : charte graphique et responsive mobile-first.
   - `assets/logo/NEW_LOGO_CRYSTAL.webp` : logo principal du site.
   - `assets/img/`, `assets/galerie/`, `assets/video/` : médias du site (images au format WebP, vidéos en MP4).
